@@ -11,9 +11,26 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
+          "changeDetection": "OnPush",
+          "flat": true,
           "inlineStyle": true,
+          "inlineTemplate": true,
           "style": "scss"
+        },
+        "@schematics/angular:directive": {
+          "flat": true
+        },
+        "@schematics/angular:guard": {
+          "flat": true
+        },
+        "@schematics/angular:interceptor": {
+          "flat": true
+        },
+        "@schematics/angular:pipe": {
+          "flat": true
+        },
+        "@schematics/angular:resolver": {
+          "flat": true
         }
       },
       "root": "",
