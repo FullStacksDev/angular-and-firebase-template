@@ -4,6 +4,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { RuntimeService } from '@app-shared/runtime.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -21,6 +22,7 @@ import { filter } from 'rxjs';
   styles: [],
 })
 export class AppComponent {
+  readonly #runtimeService = inject(RuntimeService);
   readonly #snackBar = inject(MatSnackBar);
 
   title = 'app';
@@ -31,6 +33,8 @@ export class AppComponent {
       .subscribe(() => {
         this.informUserOfUpdate();
       });
+
+    console.log('*** this.#runtimeService.isServer = ', this.#runtimeService.isServer);
   }
   private informUserOfUpdate(): void {
     this.#snackBar
