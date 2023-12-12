@@ -5,6 +5,7 @@
     "ng": "ng",
     "dev": "yarn start",
     "start": "ng serve",
+    "start:prod": "ng serve --configuration production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
