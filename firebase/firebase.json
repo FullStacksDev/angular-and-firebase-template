@@ -8,27 +8,30 @@
   },
   "functions": [
     {
-      "source": "functions",
       "codebase": "default",
+      "source": ".",
+      "predeploy": ["yarn lint", "yarn functions:build"],
       "ignore": [
         "node_modules",
         ".git",
+        "**/.*",
+        ".vscode",
+        "*.log",
+        "dist",
+        "local",
+        "firebase.json",
+        "*.rules",
+        "firestore.indexes.json",
+        "remoteconfig.template.json",
+        "functions/src",
         "firebase-debug.log",
         "firebase-debug.*.log"
-      ],
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run lint",
-        "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
   ],
   "hosting": {
-    "public": "dist/app/browser",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "dist/app",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
@@ -53,7 +56,7 @@
       "port": 9000
     },
     "hosting": {
-      "port": 5000
+      "port": 6001
     },
     "pubsub": {
       "port": 8085

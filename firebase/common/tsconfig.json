@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2017"
+  }
+}

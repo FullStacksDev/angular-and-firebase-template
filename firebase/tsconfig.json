@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "outDir": "functions/lib",
+    "rootDir": "functions/src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017"
+  },
+  "compileOnSave": true,
+  "include": ["functions/src"],
+  "references": [{ "path": "./common" }]
+}

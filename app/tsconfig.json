@@ -21,9 +21,15 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@app-shared/*": ["./src/app/shared/*"]
+      "@app-shared/*": ["./src/app/shared/*"],
+      "@common": ["../firebase/common/index"]
     }
   },
+  "references": [
+    {
+      "path": "../firebase/common"
+    }
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
