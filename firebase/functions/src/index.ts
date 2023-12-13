@@ -1,23 +1,26 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import { initializeApp } from 'firebase-admin/app';
+import { getDatabase } from 'firebase-admin/database';
+import { logger } from 'firebase-functions/v2';
+import { onCall } from 'firebase-functions/v2/https';
+import { DEFAULT_FIREBASE_REGION } from '../../common';
 
-// import {onRequest} from "firebase-functions/v2/https";
-// import * as logger from "firebase-functions/logger";
+initializeApp();
 
-import { Test } from '../../common';
+export const updateServerLastTimestamp = onCall(
+  {
+    region: DEFAULT_FIREBASE_REGION,
+  },
+  async (request) => {
+    const updatedBy = request.auth?.token.email ?? 'unknown';
+    const now = new Date().toISOString();
+    const updatedData = {
+      lastTimestamp: now,
+      lastUpdatedBy: updatedBy,
+    };
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+    logger.debug(`Updating server last timestamp to ${now}`);
+    await getDatabase().ref('server').update(updatedData);
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-
-export const test: Test = { foo: 'bar' };
+    return updatedData;
+  },
+);

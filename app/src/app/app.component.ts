@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, NgZone, inject } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { httpsCallable$, injectFunctions } from '@app-shared/firebase/functions';
+import { injectRtdb, objectVal$ } from '@app-shared/firebase/rtdb';
 import { RuntimeService } from '@app-shared/runtime.service';
-import { filter } from 'rxjs';
+import { ref } from 'firebase/database';
+import { Observable, filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +27,8 @@ import { filter } from 'rxjs';
 export class AppComponent {
   readonly #runtimeService = inject(RuntimeService);
   readonly #snackBar = inject(MatSnackBar);
+  readonly #functions = injectFunctions();
+  readonly #rtdb = injectRtdb();
 
   title = 'app';
 
@@ -35,6 +40,18 @@ export class AppComponent {
       });
 
     console.log('*** this.#runtimeService.isServer = ', this.#runtimeService.isServer);
+
+    if (!this.#runtimeService.isServer) {
+      inject(NgZone).runOutsideAngular(() => {
+        this.helloWorldFunction().subscribe((result) => {
+          console.log('Result from calling the updateServerLastTimestamp function:', result);
+        });
+
+        objectVal$(ref(this.#rtdb, 'server')).subscribe((data) => {
+          console.log('Result from RTDB:', data);
+        });
+      });
+    }
   }
   private informUserOfUpdate(): void {
     this.#snackBar
@@ -46,5 +63,12 @@ export class AppComponent {
       .subscribe(() => {
         window.location.reload();
       });
+  }
+
+  private helloWorldFunction(): Observable<unknown> {
+    const fn = httpsCallable$(this.#functions, 'updateServerLastTimestamp', {
+      timeout: 5_000,
+    });
+    return fn();
   }
 }
