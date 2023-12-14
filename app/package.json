@@ -27,6 +27,8 @@
     "@angular/router": "^17.0.7",
     "@angular/service-worker": "^17.0.7",
     "@angular/ssr": "^17.0.7",
+    "@ngrx/operators": "^17.0.1",
+    "@ngrx/signals": "^17.0.1",
     "express": "^4.18.2",
     "firebase": "^10.7.1",
     "ngxtension": "^1.6.1",
