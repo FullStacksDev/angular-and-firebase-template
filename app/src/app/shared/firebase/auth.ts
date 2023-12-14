@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 // Initialise the Firebase app here because we expect Auth to be the first thing initialised
 initializeApp(environment.firebaseConfig);
 
-export function authFactory() {
+function authFactory() {
   const auth = getAuth();
   if (environment.useEmulators) {
     connectAuthEmulator(auth, 'http://localhost:9099', {

@@ -48,6 +48,10 @@ $material-theme-overrides: (
 );
 $app-theme: map.deep-merge($app-theme, $material-theme-overrides);
 
+// Include typography styles
+$mat-typography: mat.define-typography-config();
+@include mat.typography-hierarchy($mat-typography);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

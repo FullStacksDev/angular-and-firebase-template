@@ -1,7 +1,8 @@
 export const DEFAULT_FIREBASE_REGION = 'europe-west2' as const;
 
-export const FIRESTORE_COLLECTION_NAMES: Record<string, string> = {};
-
-export type WithFirestoreId = {
+export interface User {
   id: string;
-};
+  displayName: string | null;
+  email: string | null;
+  emailVerified: boolean;
+}

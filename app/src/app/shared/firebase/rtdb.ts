@@ -14,5 +14,3 @@ function rtdbFactory(_: Auth) {
 }
 
 export const [injectRtdb] = createInjectionToken(rtdbFactory, { deps: [FIREBASE_AUTH] });
-
-export { objectVal as objectVal$ } from 'rxfire/database';

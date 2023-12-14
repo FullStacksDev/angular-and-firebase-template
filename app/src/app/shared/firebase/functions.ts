@@ -17,5 +17,3 @@ function functionsFactory(_: Auth) {
 }
 
 export const [injectFunctions] = createInjectionToken(functionsFactory, { deps: [FIREBASE_AUTH] });
-
-export { httpsCallable as httpsCallable$ } from 'rxfire/functions';

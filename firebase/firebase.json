@@ -32,10 +32,58 @@
   "hosting": {
     "public": "dist/app",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
     "rewrites": [
       {
-        "source": "**",
+        "source": "/",
         "destination": "/index.html"
+      },
+      {
+        "source": "/about",
+        "destination": "/about/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/loader/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store"
+          }
+        ]
+      },
+      {
+        "source": "*-[0-9A-Z][0-9A-Z][0-9A-Z][0-9A-Z][0-9A-Z][0-9A-Z][0-9A-Z][0-9A-Z].+(css|js)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=31536000,immutable"
+          }
+        ]
+      },
+      {
+        "source": "(*-worker|worker-*).js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store"
+          }
+        ]
+      },
+      {
+        "source": "ngsw.json",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store"
+          }
+        ]
       }
     ]
   },
