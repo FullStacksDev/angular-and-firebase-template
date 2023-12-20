@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Check for the presence of the VSCode command line executable
+if ! command -v code &> /dev/null
+then
+    echo "VSCode executable ('code') could not be found on the command line - install this from within VSCode first (by opening the command palette and searching for  \"Install 'code' command in path\")".
+    exit
+fi
+
+code project.code-workspace

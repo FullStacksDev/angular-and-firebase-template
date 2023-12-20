@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "path": "app"
+    },
+    {
+      "path": "firebase"
+    }
+  ],
+  "settings": {
+    "window.title": "My Angular and Firebase app",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit",
+      "source.fixAll.eslint": "never"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.linkedEditing": true,
+    "eslint.options": {
+      "extensions": [".ts", ".html"]
+    },
+    "eslint.validate": ["javascript", "typescript", "html"],
+    "editor.wordWrap": "on",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.editor.labelFormat": "default",
+    "typescript.tsdk": "app/node_modules/typescript/lib"
+  },
+  "extensions": {
+    "recommendations": [
+      "angular.ng-template",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "johnpapa.angular-essentials",
+      "toba.vsfire"
+    ]
+  }
+}

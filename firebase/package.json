@@ -1,0 +1,36 @@
+{
+  "name": "firebase",
+  "scripts": {
+    "firebase": "firebase",
+    "lint": "eslint --ext .js,.ts .",
+    "functions:dev": "tsc --build  --watch --preserveWatchOutput --pretty",
+    "functions:build": "tsc --build",
+    "functions:serve": "yarn functions:build && firebase emulators:start --project=demo-local --only functions",
+    "functions:shell": "yarn functions:build && firebase functions:shell",
+    "functions:logs": "firebase functions:log",
+    "emulators": "firebase emulators:start --project=demo-local --import=local/data --export-on-exit",
+    "dev": "run-p functions:dev emulators",
+    "deploy:live": "firebase deploy -P live"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "functions/lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.5.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "firebase-functions-test": "^3.1.0",
+    "firebase-tools": "^13.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.1.1",
+    "typescript": "~5.2.2"
+  },
+  "private": true
+}
