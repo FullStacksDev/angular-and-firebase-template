@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -53,13 +51,19 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
           </div>
         </mat-card-content>
         <mat-card-actions align="end">
-          <button class="mr-2" mat-raised-button color="primary" type="submit">
+          <button
+            class="mr-2"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="processing()"
+          >
             Send login link
           </button>
         </mat-card-actions>
         <mat-card-footer>
           @if (processing()) {
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar mode="indeterminate" />
           }
         </mat-card-footer>
       </mat-card>
@@ -68,21 +72,21 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styles: ``,
 })
 export class LoginFormComponent {
-  private readonly fb = inject(FormBuilder);
+  readonly #fb = inject(FormBuilder);
 
-  private readonly _processing = signal(false);
+  readonly #processing = signal(false);
 
   @Input({ required: true })
   set processing(processing: boolean) {
-    this._processing.set(processing);
+    this.#processing.set(processing);
   }
   get processing(): Signal<boolean> {
-    return this._processing;
+    return this.#processing;
   }
 
   @Output() submitted = new EventEmitter<string>();
 
-  readonly formGroup = this.fb.nonNullable.group({
+  readonly formGroup = this.#fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
   });
 

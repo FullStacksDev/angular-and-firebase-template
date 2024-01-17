@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -8,7 +7,7 @@ import { LogoutService } from '@app-shared/auth/data/logout.service';
 @Component({
   selector: 'app-auth-status',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatButtonModule],
+  imports: [RouterLink, MatButtonModule],
   template: `
     @if (isAuthenticated()) {
       <button mat-button (click)="logOut()">Log out</button>

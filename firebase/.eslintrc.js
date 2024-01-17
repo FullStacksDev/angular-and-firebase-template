@@ -31,6 +31,12 @@ module.exports = {
       rules: {
         "import/no-unresolved": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            ignoreRestSiblings: true,
+          },
+        ],
       },
     },
   ],
