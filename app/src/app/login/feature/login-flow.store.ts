@@ -17,30 +17,30 @@ import { LoginService } from '../data/login.service';
 
 const localStorageKeyForEmail = 'emailForLogin';
 
-interface IdleState {
+type IdleState = {
   status: 'idle';
   error: null;
-}
+};
 
-interface ProcessingState {
+type ProcessingState = {
   status: 'processing';
   error: null;
-}
+};
 
-interface EmailSentState {
+type EmailSentState = {
   status: 'email_sent';
   error: null;
-}
+};
 
-interface CompletedState {
+type CompletedState = {
   status: 'completed';
   error: null;
-}
+};
 
-interface ErrorState {
+type ErrorState = {
   status: 'error';
   error: string;
-}
+};
 
 type LoginFlowState = IdleState | ProcessingState | EmailSentState | CompletedState | ErrorState;
 
@@ -91,7 +91,9 @@ const _LoginFlowStore = signalStore(
     return {
       triggerLoginLink: rxMethod<{ email: string }>(
         pipe(
-          tap((email) => console.log(`[LoginFlowStore] #triggerLoginLink - email = ${email}`)),
+          tap((params) =>
+            console.log(`[LoginFlowStore] #triggerLoginLink - email = ${params.email}`),
+          ),
           tap(() => setProcessing()),
           exhaustMap(({ email }) => {
             return from(loginService.triggerLoginLink(email, document.location.href)).pipe(

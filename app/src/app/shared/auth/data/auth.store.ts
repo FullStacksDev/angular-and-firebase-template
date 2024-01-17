@@ -12,18 +12,7 @@ import {
   withState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import {
-  EMPTY,
-  Observable,
-  distinctUntilChanged,
-  filter,
-  finalize,
-  map,
-  pipe,
-  shareReplay,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { EMPTY, filter, finalize, pipe, shareReplay, switchMap, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 type DisconnectedState = {
@@ -133,16 +122,11 @@ const _AuthStore = signalStore(
 
 @Injectable({ providedIn: 'root' })
 export class AuthStore extends _AuthStore {
-  readonly waitUntilAuthConnected$ = toObservable(this.status).pipe(
-    tap((status) => console.log('[AuthStore] waitUntilAuthConnected - status =', status)),
+  readonly waitUntilConnected$ = toObservable(this.status).pipe(
+    tap((status) => console.log('[AuthStore] waitUntilConnected - status =', status)),
     filter((status) => status === 'connected'),
     shareReplay(1),
   );
 
-  readonly userId$: Observable<string | undefined> = toObservable(this.user).pipe(
-    map((user) => user?.id),
-    distinctUntilChanged(),
-    tap((userId) => console.log('[AuthStore] userId detected: ', userId)),
-    shareReplay(1),
-  );
+  readonly user$ = toObservable(this.user);
 }

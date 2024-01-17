@@ -9,17 +9,14 @@ import { LoginFlowStore } from './login-flow.store';
   imports: [MatSnackBarModule, LoginFormComponent],
   providers: [LoginFlowStore],
   template: `
-    <div class="w-96">
+    <div class="w-[360px]">
       @if (status() === 'error') {
         <div class="my-2 rounded bg-red-100 px-3 py-2 text-center text-sm text-red-700">
           {{ error() }}
         </div>
       }
 
-      <app-login-form
-        [processing]="status() === 'processing'"
-        (submitted)="onSubmit($event)"
-      ></app-login-form>
+      <app-login-form [processing]="status() === 'processing'" (submitted)="onSubmit($event)" />
     </div>
   `,
   styles: ``,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoginFlowComponent } from './login-flow.component';
@@ -12,11 +11,11 @@ import { LoginFlowComponent } from './login-flow.component';
         <app-login-flow />
       </section>
     } @loading (after 80ms) {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" />
     }
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, MatProgressBarModule, LoginFlowComponent],
+  imports: [MatProgressBarModule, LoginFlowComponent],
 })
 export class LoginPageComponent {}

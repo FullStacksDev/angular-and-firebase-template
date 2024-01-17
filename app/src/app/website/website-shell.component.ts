@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
@@ -7,7 +6,7 @@ import { AuthStatusComponent } from './ui/auth-status.component';
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLinkWithHref, MatButtonModule, AuthStatusComponent],
+  imports: [RouterOutlet, RouterLinkWithHref, MatButtonModule, AuthStatusComponent],
   template: `
     <div class="container mx-auto px-4">
       <header>

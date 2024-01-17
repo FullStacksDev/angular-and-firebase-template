@@ -11,7 +11,7 @@ export class AuthService {
   readonly #runtimeService = inject(RuntimeService);
   readonly #auth = injectAuth();
 
-  readonly #firebaseUser$ = user$(this.#auth).pipe(
+  readonly #firebaseUser$: Observable<User | null> = user$(this.#auth).pipe(
     tap((firebaseUser) =>
       console.log('[AuthService] Received auth user data from Firebase:', firebaseUser),
     ),
@@ -22,6 +22,8 @@ export class AuthService {
           displayName: firebaseUser.displayName,
           email: firebaseUser.email,
           emailVerified: firebaseUser.emailVerified,
+          lastSignInTime: firebaseUser.metadata.lastSignInTime || null,
+          creationTime: firebaseUser.metadata.creationTime || null,
         };
       } else {
         return null;

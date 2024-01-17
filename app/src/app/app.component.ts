@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
@@ -9,8 +8,8 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatSnackBarModule],
-  template: ` <router-outlet></router-outlet> `,
+  imports: [RouterOutlet, MatSnackBarModule],
+  template: ` <router-outlet /> `,
   styles: [],
 })
 export class AppComponent {

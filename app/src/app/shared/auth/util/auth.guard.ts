@@ -5,26 +5,28 @@ import { map, take } from 'rxjs';
 import { AuthStore } from '../data/auth.store';
 
 export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
+  console.log(`[authGuard] Factory called - allowOnly = ${allowOnly}`);
+
   return (route: Route) => {
     const runtimeService = inject(RuntimeService);
     const router = inject(Router);
 
     console.log(
-      `[Auth guard] Factory called - allowOnly = ${allowOnly}, route.path = ${route.path}`,
+      `[authGuard] Factory called - allowOnly = ${allowOnly}, route.path = ${route.path}`,
     );
 
     if (runtimeService.isServer) {
-      console.log('[Auth guard] Server side - render the /loader view instead');
+      console.log('[authGuard] Server side - render the /loader view instead');
       return router.createUrlTree(['/loader']);
     }
 
     const authStore = inject(AuthStore);
 
-    return authStore.waitUntilAuthConnected$.pipe(
+    return authStore.waitUntilConnected$.pipe(
       map(() => {
         const isAuthenticated = authStore.isAuthenticated();
 
-        console.log(`[Auth guard] After auth connected - isAuthenticated = ${isAuthenticated}`);
+        console.log(`[authGuard] After auth connected - isAuthenticated = ${isAuthenticated}`);
 
         switch (allowOnly) {
           case 'authed':

@@ -31,7 +31,7 @@ $app-theme: mat.define-light-theme(
       warn: $app-warn,
     ),
     typography: mat.define-typography-config(),
-    density: -2,
+    density: -1,
   )
 );
 
@@ -74,6 +74,12 @@ body {
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Need this separate declaration because it's on the <body> element so the #app parent selector won't work.
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #app {

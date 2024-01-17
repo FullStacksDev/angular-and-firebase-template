@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
-    <h1 class="mat-headline-5 mt-8 text-center">
+    <h1 class="mat-headline-5 mt-8 text-center leading-normal">
       This is the FullStacks.dev Angular and Firebase template running on Firebase
     </h1>
   `,
