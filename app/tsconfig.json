@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -22,18 +21,18 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@app-shared/*": ["./src/app/shared/*"],
-      "@common": ["../firebase/common/index"]
-    }
+      "@common": ["../firebase/common/index"],
+    },
   },
   "references": [
     {
-      "path": "../firebase/common"
-    }
+      "path": "../firebase/common",
+    },
   ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "strictTemplates": true,
+  },
 }

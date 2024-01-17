@@ -12,9 +12,9 @@
     "rootDir": "functions/src",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
   },
   "compileOnSave": true,
   "include": ["functions/src"],
-  "references": [{ "path": "./common" }]
+  "references": [{ "path": "./common" }],
 }
