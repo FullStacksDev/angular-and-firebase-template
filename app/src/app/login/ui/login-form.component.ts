@@ -3,10 +3,8 @@ import {
   Component,
   EventEmitter,
   inject,
-  Input,
+  input,
   Output,
-  Signal,
-  signal,
 } from '@angular/core';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -74,15 +72,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class LoginFormComponent {
   readonly #fb = inject(FormBuilder);
 
-  readonly #processing = signal(false);
-
-  @Input({ required: true })
-  set processing(processing: boolean) {
-    this.#processing.set(processing);
-  }
-  get processing(): Signal<boolean> {
-    return this.#processing;
-  }
+  readonly processing = input.required<boolean>();
 
   @Output() submitted = new EventEmitter<string>();
 
