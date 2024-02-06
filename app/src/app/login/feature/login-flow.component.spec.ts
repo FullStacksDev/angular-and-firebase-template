@@ -1,22 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { signal } from '@angular/core';
+import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
+import { buildRxMethodSpy } from '../../../testing/helpers';
 import { LoginFlowComponent } from './login-flow.component';
+import { LoginFlowStore } from './login-flow.store';
 
 describe('LoginFlowComponent', () => {
-  let component: LoginFlowComponent;
-  let fixture: ComponentFixture<LoginFlowComponent>;
+  MockInstance.scope();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LoginFlowComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(LoginFlowComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(LoginFlowComponent, null).mock(LoginFlowStore));
 
   it('should create', () => {
+    const handleLoginLinkIfAvailableSpy = MockInstance(
+      LoginFlowStore,
+      'handleLoginLinkIfAvailable',
+      buildRxMethodSpy('handleLoginLinkIfAvailable'),
+    );
+    MockInstance(LoginFlowStore, 'status', signal('idle' as const));
+
+    const fixture = MockRender(LoginFlowComponent);
+
+    const component = fixture.point.componentInstance;
     expect(component).toBeTruthy();
+    expect(handleLoginLinkIfAvailableSpy).toHaveBeenCalled();
   });
 });

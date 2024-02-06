@@ -1,21 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { LoginPageComponent } from './login-page.component';
 
 describe('LoginPageComponent', () => {
-  let component: LoginPageComponent;
-  let fixture: ComponentFixture<LoginPageComponent>;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [LoginPageComponent],
-    });
-    fixture = TestBed.createComponent(LoginPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(LoginPageComponent, null));
 
   it('should create', () => {
+    const fixture = MockRender(LoginPageComponent);
+
+    const component = fixture.point.componentInstance;
     expect(component).toBeTruthy();
   });
+
+  // TODO: test the `@defer` block once https://github.com/help-me-mom/ng-mocks/issues/7742 is resolved.
 });

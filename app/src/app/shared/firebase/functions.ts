@@ -16,4 +16,6 @@ function functionsFactory(_: Auth) {
   return functions;
 }
 
-export const [injectFunctions] = createInjectionToken(functionsFactory, { deps: [FIREBASE_AUTH] });
+export const [injectFunctions, , FIREBASE_FUNCTIONS] = createInjectionToken(functionsFactory, {
+  deps: [FIREBASE_AUTH],
+});

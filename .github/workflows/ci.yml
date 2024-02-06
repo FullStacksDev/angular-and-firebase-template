@@ -1,0 +1,78 @@
+name: CI pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test-all:
+    name: Build and test all
+
+    runs-on: ubuntu-22.04
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache firebase emulators
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/firebase/emulators
+          key: ${{ runner.os }}-firebase-emulators-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-firebase-emulators-
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+          cache-dependency-path: "**/pnpm-lock.yaml"
+
+      # Firebase
+
+      - name: "Firebase: install dependencies"
+        run: pnpm install --frozen-lockfile
+        working-directory: ./firebase
+
+      - name: "Firebase: build"
+        run: pnpm functions:build # Needed before lint so compiled code from `common` is available for the functions code
+        working-directory: ./firebase
+
+      - name: "Firebase: lint"
+        run: pnpm lint
+        working-directory: ./firebase
+
+      - name: "Firebase: tests"
+        run: pnpm test
+        working-directory: ./firebase
+
+      # App
+
+      - name: "App: install dependencies"
+        run: pnpm install --frozen-lockfile
+        working-directory: ./app
+
+      - name: "App: lint"
+        run: pnpm lint
+        working-directory: ./app
+
+      - name: "App: tests"
+        run: pnpm test:ci
+        working-directory: ./app
+
+      - name: "App: build"
+        run: pnpm build
+        working-directory: ./app

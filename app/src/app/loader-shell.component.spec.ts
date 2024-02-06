@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 import { LoaderShellComponent } from './loader-shell.component';
 
 describe('LoaderShellComponent', () => {
-  let component: LoaderShellComponent;
-  let fixture: ComponentFixture<LoaderShellComponent>;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [LoaderShellComponent],
-    });
-    fixture = TestBed.createComponent(LoaderShellComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(LoaderShellComponent, null));
 
   it('should create', () => {
+    const fixture = MockRender(LoaderShellComponent);
+
+    const component = fixture.point.componentInstance;
     expect(component).toBeTruthy();
+  });
+
+  it('has a progress bar', () => {
+    MockRender(LoaderShellComponent);
+
+    const el = ngMocks.find('mat-progress-bar');
+    expect(el).toBeTruthy();
   });
 });

@@ -13,4 +13,6 @@ function firestoreFactory(_: Auth) {
   return firestore;
 }
 
-export const [injectFirestore] = createInjectionToken(firestoreFactory, { deps: [FIREBASE_AUTH] });
+export const [injectFirestore, , FIREBASE_FIRESTORE] = createInjectionToken(firestoreFactory, {
+  deps: [FIREBASE_AUTH],
+});
