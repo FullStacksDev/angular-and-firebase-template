@@ -10,21 +10,21 @@ printf "%sThis will deploy the current code on this machine to the live environm
 echo
 read -r -p "Continue? [y/N] " -n 1
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-    echo
+  echo
 
-    # Ensure the app deploy folder exists in the firebase folder
-    mkdir -p firebase/dist
+  # Ensure the app deploy folder exists in the firebase folder
+  mkdir -p firebase/dist
 
-    # Clean out an existing build
-    rm -rf firebase/dist/app
+  # Clean out an existing build
+  rm -rf firebase/dist/app
 
-    # Build the production app and copy the output to the deploy folder
-    cd app
-    yarn build
-    cp -r dist/app/browser/. ../firebase/dist/app
+  # Build the production app and copy the output to the deploy folder
+  cd app
+  pnpm build
+  cp -r dist/app/browser/. ../firebase/dist/app
 
-    # Deploy to the live environment
-    cd ..
-    cd firebase
-    yarn deploy:live
+  # Deploy to the live environment
+  cd ..
+  cd firebase
+  pnpm deploy:live
 fi
