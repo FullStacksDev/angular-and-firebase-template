@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eu -o pipefail
 
 # Check for the presence of the VSCode command line executable
 if ! command -v code &> /dev/null
