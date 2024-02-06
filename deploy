@@ -5,8 +5,11 @@ set -eu -o pipefail
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+current_branch=$(git branch --show-current)
+current_hash=$(git rev-parse --short HEAD)
+
 echo
-printf "%sThis will deploy the current code on this machine to the live environment on Firebase%s" "$bold" "$normal"
+printf "%sThis will deploy the current code on this machine (branch: %s, hash: %s) to the live environment on Firebase%s" "$bold" "$current_branch" "$current_hash" "$normal"
 echo
 read -r -p "Continue? [y/N] " -n 1
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
