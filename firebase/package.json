@@ -5,8 +5,8 @@
     "lint": "eslint --ext .js,.ts .",
     "functions:dev": "tsc --build  --watch --preserveWatchOutput --pretty",
     "functions:build": "tsc --build",
-    "functions:serve": "yarn functions:build && firebase emulators:start --project=demo-local --only functions",
-    "functions:shell": "yarn functions:build && firebase functions:shell",
+    "functions:serve": "pnpm functions:build && firebase emulators:start --project=demo-local --only functions",
+    "functions:shell": "pnpm functions:build && firebase functions:shell",
     "functions:logs": "firebase functions:log",
     "emulators": "firebase emulators:start --project=demo-local --import=local/data --export-on-exit",
     "dev": "run-p functions:dev emulators",
@@ -17,6 +17,7 @@
   },
   "main": "functions/lib/index.js",
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
     "firebase-admin": "^11.11.1",
     "firebase-functions": "^4.5.0"
   },

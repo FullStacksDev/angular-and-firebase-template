@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "yarn start",
+    "dev": "pnpm start",
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
     "build": "ng build",

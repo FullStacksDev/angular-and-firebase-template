@@ -10,7 +10,7 @@
     {
       "codebase": "default",
       "source": ".",
-      "predeploy": ["yarn lint", "yarn functions:build"],
+      "predeploy": ["pnpm lint", "pnpm functions:build"],
       "ignore": [
         "node_modules",
         ".git",
