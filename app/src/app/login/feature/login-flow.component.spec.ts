@@ -1,6 +1,6 @@
 import { signal } from '@angular/core';
 import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
-import { buildRxMethodSpy } from '../../../testing/helpers';
+import { buildRxMethodSpy } from '../../../test/helpers/ngrx';
 import { LoginFlowComponent } from './login-flow.component';
 import { LoginFlowStore } from './login-flow.store';
 

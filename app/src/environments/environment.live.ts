@@ -1,5 +1,6 @@
 export const environment = {
   useEmulators: false,
+  logLevel: 0, // See https://unjs.io/packages/consola#log-level
   firebaseConfig: {
     apiKey: 'AIzaSyAlU3Zb-MVoSEbtyQF9iE-8sMbtO5g8KHk',
     authDomain: 'angular-and-firebase-template.firebaseapp.com',

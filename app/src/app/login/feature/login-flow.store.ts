@@ -1,6 +1,7 @@
 import { Injectable, effect, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStore } from '@app-shared/auth/data/auth.store';
+import { createLogger } from '@app-shared/logger';
 import { tapResponse } from '@ngrx/operators';
 import {
   getState,
@@ -49,6 +50,8 @@ const initialState: LoginFlowState = {
   error: null,
 };
 
+const logger = createLogger('LoginFlowStore');
+
 const _LoginFlowStore = signalStore(
   withState<LoginFlowState>(initialState),
   withComputed(() => {
@@ -91,9 +94,7 @@ const _LoginFlowStore = signalStore(
     return {
       triggerLoginLink: rxMethod<{ email: string }>(
         pipe(
-          tap((params) =>
-            console.log(`[LoginFlowStore] #triggerLoginLink - email = ${params.email}`),
-          ),
+          tap((params) => logger.log(`#triggerLoginLink - email = ${params.email}`)),
           tap(() => setProcessing()),
           exhaustMap(({ email }) => {
             return from(loginService.triggerLoginLink(email, document.location.href)).pipe(
@@ -117,7 +118,7 @@ const _LoginFlowStore = signalStore(
       // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
       handleLoginLinkIfAvailable: rxMethod<void>(
         pipe(
-          tap(() => console.log('[LoginFlowStore] #handleLoginLinkIfAvailable')),
+          tap(() => logger.log('#handleLoginLinkIfAvailable')),
           map(() => document.location.href),
           filter((url) => loginService.isLoginLink(url)),
           tap(() => setProcessing()),
@@ -159,7 +160,7 @@ const _LoginFlowStore = signalStore(
   }),
   withHooks({
     onInit(store) {
-      effect(() => console.log('[LoginPageStore] State:', getState(store)));
+      effect(() => logger.log('State:', getState(store)));
 
       // Listen for changes to the user and trigger completion once we have one.
       effect(
