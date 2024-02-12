@@ -1,22 +1,23 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Route, Router } from '@angular/router';
+import { createLogger } from '@app-shared/logger';
 import { RuntimeService } from '@app-shared/runtime.service';
 import { map, take } from 'rxjs';
 import { AuthStore } from '../data/auth.store';
 
+const logger = createLogger('authGuard');
+
 export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
-  console.log(`[authGuard] Factory called - allowOnly = ${allowOnly}`);
+  logger.log(`Factory called - allowOnly = ${allowOnly}`);
 
   return (route: Route) => {
     const runtimeService = inject(RuntimeService);
     const router = inject(Router);
 
-    console.log(
-      `[authGuard] Factory called - allowOnly = ${allowOnly}, route.path = ${route.path}`,
-    );
+    logger.log(`Factory called - allowOnly = ${allowOnly}, route.path = ${route.path}`);
 
     if (runtimeService.isServer) {
-      console.log('[authGuard] Server side - render the /loader view instead');
+      logger.log('Server side - render the /loader view instead');
       return router.createUrlTree(['/loader']);
     }
 
@@ -26,7 +27,7 @@ export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
       map(() => {
         const isAuthenticated = authStore.isAuthenticated();
 
-        console.log(`[authGuard] After auth connected - isAuthenticated = ${isAuthenticated}`);
+        logger.log(`After auth connected - isAuthenticated = ${isAuthenticated}`);
 
         switch (allowOnly) {
           case 'authed':

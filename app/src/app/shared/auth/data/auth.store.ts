@@ -1,5 +1,6 @@
 import { Injectable, computed, effect, inject } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { createLogger } from '@app-shared/logger';
 import { User } from '@common';
 import { tapResponse } from '@ngrx/operators';
 import {
@@ -47,6 +48,8 @@ const initialState: AuthState = {
   error: null,
 };
 
+const logger = createLogger('AuthStore');
+
 const _AuthStore = signalStore(
   { providedIn: 'root' },
   withState<AuthState>(initialState),
@@ -86,7 +89,7 @@ const _AuthStore = signalStore(
         tapResponse({
           next: (user) => setConnected(user),
           error: (error) => {
-            console.error('[AuthStore] Error getting auth data:', error);
+            logger.error('Error getting auth data:', error);
             setError('Failed to fetch auth info');
           },
         }),
@@ -102,7 +105,7 @@ const _AuthStore = signalStore(
     return {
       manageStream: rxMethod<'connect' | 'disconnect'>(
         pipe(
-          tap((action) => console.log(`[AuthStore] #manageStream - action = ${action}`)),
+          tap((action) => logger.log(`#manageStream - action = ${action}`)),
           tap((action) => (action === 'connect' ? setConnecting() : null)),
           switchMap((action) =>
             action === 'connect' ? connectedStream$() : disconnectedStream$(),
@@ -113,7 +116,7 @@ const _AuthStore = signalStore(
   }),
   withHooks({
     onInit(store) {
-      effect(() => console.log('[AuthStore] State:', getState(store)));
+      effect(() => logger.log('State:', getState(store)));
 
       store.manageStream('connect');
     },
@@ -123,7 +126,7 @@ const _AuthStore = signalStore(
 @Injectable({ providedIn: 'root' })
 export class AuthStore extends _AuthStore {
   readonly waitUntilConnected$ = toObservable(this.status).pipe(
-    tap((status) => console.log('[AuthStore] waitUntilConnected - status =', status)),
+    tap((status) => logger.log('waitUntilConnected - status =', status)),
     filter((status) => status === 'connected'),
     shareReplay(1),
   );

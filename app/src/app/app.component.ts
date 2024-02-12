@@ -2,8 +2,11 @@ import { Component, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { createLogger } from '@app-shared/logger';
 import { RuntimeService } from '@app-shared/runtime.service';
 import { filter } from 'rxjs';
+
+const logger = createLogger('AppComponent');
 
 @Component({
   selector: 'app-root',
@@ -23,7 +26,7 @@ export class AppComponent {
         this.informUserOfUpdate();
       });
 
-    console.log('*** this.#runtimeService.isServer = ', this.#runtimeService.isServer);
+    logger.log('this.#runtimeService.isServer =', this.#runtimeService.isServer);
   }
   private informUserOfUpdate(): void {
     this.#snackBar

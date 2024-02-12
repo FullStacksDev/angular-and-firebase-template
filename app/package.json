@@ -30,6 +30,7 @@
     "@angular/ssr": "^17.1.3",
     "@ngrx/operators": "^17.1.0",
     "@ngrx/signals": "^17.1.0",
+    "consola": "^3.2.3",
     "express": "^4.18.2",
     "firebase": "^10.8.0",
     "ngxtension": "^2.0.0",

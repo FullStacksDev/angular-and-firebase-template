@@ -37,7 +37,8 @@
           {
             "ignoreRestSiblings": true
           }
-        ]
+        ],
+        "no-console": ["error"]
       }
     },
     {

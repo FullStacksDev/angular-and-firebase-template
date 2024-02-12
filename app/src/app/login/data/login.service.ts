@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { injectAuth } from '@app-shared/firebase/auth';
+import { createLogger } from '@app-shared/logger';
 import {
   ActionCodeSettings,
   AuthError,
@@ -7,6 +8,8 @@ import {
   sendSignInLinkToEmail,
   signInWithEmailLink,
 } from 'firebase/auth';
+
+const logger = createLogger('LoginService');
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +48,7 @@ export class LoginService {
   }
 
   private handleFirebaseError(error: AuthError): string {
-    console.log(error);
+    logger.error('Firebase Auth error:', error);
 
     let message = 'Unknown error';
 
