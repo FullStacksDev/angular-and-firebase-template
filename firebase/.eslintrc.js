@@ -25,7 +25,12 @@ module.exports = {
         "prettier",
       ],
       parserOptions: {
-        project: ["tsconfig.json", "tsconfig.dev.json", "common/tsconfig.json"],
+        project: [
+          "tsconfig.json",
+          "tsconfig.dev.json",
+          "tsconfig.spec.json",
+          "common/tsconfig.json",
+        ],
         sourceType: "module",
       },
       rules: {

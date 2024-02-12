@@ -13,4 +13,6 @@ function storageFactory(_: Auth) {
   return storage;
 }
 
-export const [injectStorage] = createInjectionToken(storageFactory, { deps: [FIREBASE_AUTH] });
+export const [injectStorage, , FIREBASE_STORAGE] = createInjectionToken(storageFactory, {
+  deps: [FIREBASE_AUTH],
+});

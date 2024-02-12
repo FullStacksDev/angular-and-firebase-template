@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 import { AboutPageComponent } from './about-page.component';
 
 describe('AboutPageComponent', () => {
-  let component: AboutPageComponent;
-  let fixture: ComponentFixture<AboutPageComponent>;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [AboutPageComponent],
-    });
-    fixture = TestBed.createComponent(AboutPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(AboutPageComponent, null));
 
   it('should create', () => {
+    const fixture = MockRender(AboutPageComponent);
+
+    const component = fixture.point.componentInstance;
     expect(component).toBeTruthy();
+  });
+
+  it('has a heading', () => {
+    MockRender(AboutPageComponent);
+
+    const el = ngMocks.find('h1');
+    expect(el).toBeTruthy();
+    expect(el.nativeElement.textContent).toContain('About');
   });
 });
