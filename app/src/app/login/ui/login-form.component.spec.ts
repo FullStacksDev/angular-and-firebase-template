@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 import { LoginFormComponent } from './login-form.component';
 
 @Component({
   standalone: true,
-  template: `<app-login-form [processing]="processing" />`,
   imports: [LoginFormComponent],
+  template: `<app-login-form [processing]="processing" />`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestComponent {
   @Input() processing = false;
