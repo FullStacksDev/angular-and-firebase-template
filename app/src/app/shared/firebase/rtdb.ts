@@ -13,6 +13,6 @@ function rtdbFactory(_: Auth) {
   return rtdb;
 }
 
-export const [injectRtdb, , FIREBASE_RTDB] = createInjectionToken(rtdbFactory, {
+export const [injectRtdb] = createInjectionToken(rtdbFactory, {
   deps: [FIREBASE_AUTH],
 });

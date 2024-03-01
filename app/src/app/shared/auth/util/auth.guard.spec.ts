@@ -11,7 +11,7 @@ describe('authGuard', () => {
 
   beforeEach(() => MockBuilder().mock(RuntimeService).mock(AuthStore));
 
-  it('should be created', () => {
+  it('should create', () => {
     expect(executeGuard).toBeTruthy();
   });
 });
