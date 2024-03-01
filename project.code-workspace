@@ -11,7 +11,7 @@
     }
   ],
   "settings": {
-    "window.title": "My Angular and Firebase app",
+    "window.title": "FullStacksDev Angular and Firebase base template",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
       "source.fixAll": "explicit",
