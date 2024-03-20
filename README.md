@@ -35,9 +35,9 @@ For more details see the "Architecture and design decisions" section below.
 > Basic familiarity with the technologies / services listed is required to make the best of this tech stack and template.
 
 - [Node.js](https://nodejs.org/en/) v20.x
-- [TypeScript](https://www.typescriptlang.org/) v5.3
-- [Angular](https://angular.io/) v17.2
-- [Angular Material](https://material.angular.io/) v17.2
+- [TypeScript](https://www.typescriptlang.org/) v5.4
+- [Angular](https://angular.io/) v17.3
+- [Angular Material](https://material.angular.io/) v17.3
 - [Tailwind CSS](https://tailwindcss.com/) v3.4
 - [NgRx Signals](https://ngrx.io/guide/signals) v17.1
 - [RxFire](https://github.com/FirebaseExtended/rxfire) v6

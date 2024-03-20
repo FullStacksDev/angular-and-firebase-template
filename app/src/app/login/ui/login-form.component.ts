@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  inject,
-  input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -74,7 +67,7 @@ export class LoginFormComponent {
 
   readonly processing = input.required<boolean>();
 
-  @Output() submitted = new EventEmitter<string>();
+  readonly submitted = output<string>();
 
   readonly formGroup = this.#fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
