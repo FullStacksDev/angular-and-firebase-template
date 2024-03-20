@@ -29,6 +29,7 @@
             "style": "camelCase"
           }
         ],
+        "@angular-eslint/prefer-standalone": "error",
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/method-signature-style": ["error", "property"],
         "@typescript-eslint/no-extraneous-class": "off",
