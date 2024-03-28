@@ -6,7 +6,7 @@ import { AuthStore } from './auth.store';
 describe('AuthStore', () => {
   MockInstance.scope();
 
-  beforeEach(() => MockBuilder(AuthStore).mock(AuthService));
+  beforeEach(() => MockBuilder(AuthStore, null).mock(AuthService));
 
   it('should create', () => {
     MockInstance(AuthService, 'user$', of(null));
