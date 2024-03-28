@@ -126,7 +126,7 @@ const _AuthStore = signalStore(
 @Injectable({ providedIn: 'root' })
 export class AuthStore extends _AuthStore {
   readonly waitUntilConnected$ = toObservable(this.status).pipe(
-    tap((status) => logger.log('waitUntilConnected - status =', status)),
+    tap((status) => logger.log('waitUntilConnected$ - status =', status)),
     filter((status) => status === 'connected'),
     shareReplay(1),
   );
