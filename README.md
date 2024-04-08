@@ -246,13 +246,55 @@ This deploys the Angular app and Firebase bits to the "live" Firebase project. R
 
 ## Updating
 
-### How to update your app to the latest base template
+For apps built on this base template there are two things you need to do to keep updated to the latest dependencies and base template:
 
-TODO
+1. _[Whenever you want]_ Update the dependencies in the `app` and `firebase` folders.
+1. _[When there's a new base template release]_ Perform specific tasks to match any new or updated base template bits, as specified in release notes, and at your discretion (depending on how far you've deviated from the base template, and what is relevant to your app).
 
-### How to update dependencies
+### 1. How to update dependencies
 
-TODO
+You can update some or all of the dependencies in the `app` and `firebase` folders using `pnpm` (our chosen pack manager):
+
+For the `app` folder:
+
+1. First run `pnpm ng update` and follow the instructions.
+   - This will update the Angular specific dependencies (and any other dependencies that support Angular Schematics).
+   - You can choose to skip this step, especially if there is a major version of Angular with breaking changes (in which case you could choose to wait until the base template has been updated first).
+1. Then run `pnpm update --interactive --latest` and follow the instructions.
+   - You can select the packages you want to update.
+
+For the `firebase` folder:
+
+1. Run `pnpm update --interactive --latest` and follow the instructions.
+   - You can select the packages you want to update.
+
+Make sure to do all this in a branch, test locally and push to GitHub, then open a PR to trigger the continuous integration pipeline (which runs the linter, tests, etc.) and wait until it's green. You'll also want to then do a deploy to your live Firebase project to make sure everything works as expected.
+
+> [!IMPORTANT]
+>
+> This is like any other dependency update process and can sometimes require changes to your code. Especially with major version updates with breaking changes. We aim to keep the base template up-to-date with the latest versions of dependencies, and if these result in changes to the code we make a new release of the base template with specific instructions on what to do. See the next section for more on this.
+
+> [!TIP]
+>
+> Sometimes, especially with major version updates, you may need to delete the `node_modules` folder and `pnpm-lock.yaml` file, and then run `pnpm install` to rebuild the dependency tree and lockfile. This ensures the very latest dependencies (matched to the versions defined in the relevant `package.json`) are used (especially subdependencies).
+
+### 2. How to update your app to a base template release
+
+> [!NOTE]
+>
+> Once the base template is launched and in a stable version, there are unlikely to be frequent changes, so hopefully you won't need to do this often.
+>
+> Also, we won't usually make releases for simple dependency updates, or content changes.
+
+Whenever we make a new release of the base template we will provide detailed release notes with specific instructions on what to do to update your app. These will contain specific code changes you can make (some may be optional), and it will all depend on how much you have deviated from the base template, and what is relevant to your app.
+
+> [!IMPORTANT]
+>
+> We use the `TEMPLATE_VERSION` file to track what the current version of the template is. You will have this in your app as well, as a reference for the version of the base template you started with (or last updated to). Use this to find the release notes (possibly multiple) to go through.
+>
+> **And make sure you update this `TEMPLATE_VERSION` file as part of your update process.**
+
+Go to the [releases page](https://github.com/FullStacksDev/angular-and-firebase-template/releases) to find the release notes for the version(s) you want to update to.
 
 ## Architecture and design decisions
 
