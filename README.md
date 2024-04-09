@@ -161,7 +161,7 @@ What you need locally before you start:
       1. In the "Your apps" section click the icon representing web app ("</>") and give the app a name, like "PWA". You can skip the Firebase Hosting setup for now.
          - After this app entry is created you'll be shown some config. Ignore this for now as you'll copy the config at the end of this Firebase project set up process (see below).
    1. To use Firebase Functions you need to be on [a paid plan](https://firebase.google.com/pricing) (as Functions are not supported on the "no-cost" tier). Use the "Upgrade" button at the bottom of the left-hand sidebar (this will need a billing account to be set up).
-      - Note: the base template is already set up to use and deploy functions but does not come with any actual functions out of the box, so it can be used on [the free tier](https://firebase.google.com/pricing) if needed, but only after some modifications — see the relevant "how-to" below for removing services like functions etc.
+      - Note: the base template is already set up to use and deploy functions but does not come with any actual functions out of the box, so it can be used on [the free tier](https://firebase.google.com/pricing) if needed, but only after some modifications — see the relevant "how-to" guide below for removing services like functions etc.
       - You'll be able to set a budget alert as part of the upgrade process.
       - IMPORTANT: Firebase won't actually stop charging you if you go over the budget amount, so keep a very close eye on usage and make sure you understand your usage patterns (and the costs associated with them).
    1. Click "Authentication" in the left-hand menu (under "Build") and enable the "Email/Password" sign-in method together with the "Email link (passwordless sign-in)" option too (on the same page).
@@ -308,39 +308,146 @@ Feel free to deviate from these as you wish. The base template is designed to be
 
 ## How-to guides
 
-Here we document some quick how-to guides to help you get started with the template.
+Here we document some how-to guides to help you get started with this base template.
 
 > [!NOTE]
 >
-> It's recommended to read the [architecture and design decisions](ARCHITECTURE.md) doc before diving into these guides.
+> It's recommended to familiarize yourself with the [architecture and design decisions](ARCHITECTURE.md) doc before diving into these guides.
 
-### Adding a new static / prerendered page
+### Adding a new static prerendered page
 
-TODO
+Say you want to add a new static prerendered page to the website part of your app, e.g. a "Contact us" page (served at `/contact`). Here's how you can do it:
 
-### Adding your dynamic app bits
+1. Generate a new component in the [`app/src/app/website`](./app/src/app/website) folder:
+   - In the `app` folder, run: `pnpm ng generate component website/feature/contact-page`
+1. Add the new component to the website routes in the [`app/src/app/website/website.routes.ts`](./app/src/app/website/website.routes.ts) file.
+   - Follow the example of the `'about'` route. So, add: `{ path: 'contact', component: ContactPageComponent },` in the `children` array.
+1. Add an entry in the [`app/prerendered-routes.txt`](./app/prerendered-routes.txt) file.
+   - Add a new line with `/contact` on it.
+1. (Optionally) Add a nav entry in the [`app/src/app/website/website-shell.component.ts`](./app/src/app/website/website-shell.component.ts) file.
+1. Check everything works locally by running the dev servers and inspecting the app locally.
+1. Run `pnpm build` in the top-level `app` folder to test the production build.
+   - Within the top-level `app` folder, you can inspect the `dist/app/browser` folder to check the prerendered HTML files.
+1. Add an entry in the [`firebase/firebase.json`](./firebase/firebase.json) file (under the `hosting.rewrites` key) to serve the relevant prerendered HTML file for this new path.
+   - Follow the example for the `/about` path.
+   - Important: make sure this new entry comes _before_ the `**` catch-all entry.
+1. Add an exclusion for this new path in the [`app/ngsw-config.json`](./app/ngsw-config.json) file (under the `navigationUrls` key).
+   - So, add: `"!/contact"` to the end of the array.
+1. Add content to this new page as you see fit.
+1. Fix the tests and make sure everything works as expected.
+1. Commit your changes and push to GitHub, opening a PR so the CI pipeline can run.
+1. When the CI is green, deploy the app to your live Firebase project.
+   - By running the `./deploy` script in the root folder, locally.
 
-TODO
+> [!TIP]
+>
+> Technically, you can make any route in the app a prerendered page — it doesn't have to be part of the 'website' feature folder. But it's a good idea to keep all the prerendered pages in one place for consistency.
+
+### Adding a fully dynamic and lazily-loaded feature to your app
+
+You'll likely have a main feature section of your app which will be the dynamic user-specific part of the app (together with other dynamic sections like admin, account, etc.)
+
+> [!TIP]
+>
+> By "fully dynamic" we mean that all the logic, UI, etc. runs client-side (in the user's browser). The server (a static host in our case) just serves an empty shell to load the app. This is essentially a single-page app (SPA) architecture.
+
+Say your main feature is a "dashboard", here's how you can add this to the app (as a fully dynamic and lazily-loaded feature):
+
+1. Create a new feature folder: `app/src/app/dashboard`.
+   - Within this folder you'll want to organize things within `data`, `feature`, `ui` and `util` subfolders (see the [architecture](./ARCHITECTURE.md) doc for details).
+1. Create a routes file: `app/src/app/dashboard/dashboard.routes.ts`.
+   - This file will define the routes for the feature as you would in any Angular app.
+1. Register the parent path as a route in the `app/src/app/app.routes.ts` file.
+   - You can follow the example of the `website` routes, setting your `path` to `/dashboard` (or whatever you prefer).
+   - Note the use of `import('./dashboard/dashboard.routes')` here — this tells Angular to perform the lazy loading of the feature based on its routes.
+1. You'll likely want a shell component for the feature, which all child routes will be rendered within.
+   - Run `pnpm ng generate component dashboard/dashboard-shell` to generate this.
+   - And register this as the component for the parent route in the `dashboard.routes.ts` file, with all child routes defined within.
+   - This component will be the parent component for the feature, and will likely contain the main layout (with shared nav, etc.) It _must_ have a `<router-outlet />` in it to render the child routes.
+1. You'll likely want to lock down everything within this feature to authenticated users only.
+   - You can use the `authGuard` provided by the base template, by adding `canMatch: [authGuard('authed')]` to the parent route (the one where you specified the dashboard shell component).
+   - You could instead choose to only secure particular child routes, by adding the `canMatch` property to those routes instead, leaving others open.
+1. You'll likely want to add a nav entry for this feature on your website pages, so users can navigate to it.
+   - Add this in [`app/src/app/website/website-shell.component.ts`](../app/src/app/website/website-shell.component.ts).
+1. Your feature is ready for development.
 
 ### Configuring the PWA
 
-TODO
+The base template comes with a basic PWA setup, including a manifest file, service worker, etc. Here's how you can configure this for your app:
+
+- Configure the app name, colors, icons, scope, start URL, etc. in: [`app/src/manifest.webmanifest`](./app/src/manifest.webmanifest).
+  - This follows the regular [PWA manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) spec.
+  - Also update the `theme-color` meta tag in the [`index.html`](./app/src/index.html) file to match.
+- Update the icons in the [`app/src/assets/icons`](./app/src/assets/icons) folder.
+- Configure the service worker in: [`app/ngsw-config.json`](./app/ngsw-config.json).
+  - This is the Angular service worker config file ([docs](https://angular.io/guide/service-worker-config)).
+  - Note that we provide a sensible set-up that works well with the combination of static prerendered pages and dynamic features in the app, so you may not need to change this (and should be careful when doing so).
+- Configure the in-app update notification in: [`app/src/app/app.component.ts`](./app/src/app/app.component.ts).
+
+> [!TIP]
+>
+> You are free to use more of the PWA features like background sync, push notifications, etc. as you see fit. The base template is set up to be a useful starting point for a PWA.
 
 ### Removing the PWA bits
 
-TODO
+You may not need the PWA bits in your app. Here's how you can remove them completely:
+
+1. Delete the [`app/src/manifest.webmanifest`](./app/src/manifest.webmanifest) file.
+1. Remove the mentions of this `manifest.webmanifest` file in the [`app/angular.json`](./app/angular.json) file.
+1. Remove the manifest link in the [`index.html`](./app/src/index.html) file.
+1. Delete any icons you don't need in the [`app/src/assets/icons`](./app/src/assets/icons) folder.
+1. Delete the [`app/ngsw-config.json`](./app/ngsw-config.json) file.
+1. Remove the `"serviceWorker": "ngsw-config.json"` bit in the [`app/angular.json`](./app/angular.json) file.
+1. Remove the service worker registration in the [`app/src/app/app.config.ts`](./app/src/app/app.config.ts) file.
+1. Update any tests that also do the service worker registration.
+1. Remove the in-app update notification code in the [`app/src/app/app.component.ts`](./app/src/app/app.component.ts) file.
+1. Remove the `@angular/service-worker` dependency from the [`app/package.json`](./app/package.json) file.
+   - You'll need to run `pnpm install` in the top-level `app` folder to remove this dependency from your local `node_modules` folder and to update the `pnpm-lock.yaml` file.
 
 ### Removing Firebase services (like Functions)
 
-TODO
+You may not need all the Firebase services in your app, especially Firebase Functions which requires a paid plan.
+
+Here's how to remove Firebase Functions from your app:
+
+1. If you want to stay fully within the "no-cost" (aka free) tier of Firebase, make sure you don't upgrade the project in the Firebase Console (for the live project).
+1. Update [`firebase/firebase.json`](./firebase/firebase.json):
+   - Remove the whole `functions` top level config.
+   - Remove the entries for the functions, pubsub and eventarc emulators.
+1. It's easier to just keep the `firebase/functions` and `firebase/common` folders as they are — they won't be used or deployed.
+
+Here's how to remove a service like Firebase Storage from your app:
+
+1. Make sure you don't enable the Storage service in the Firebase Console (for the live project).
+1. Update [`firebase/firebase.json`](./firebase/firebase.json):
+   - Remove the `storage` top level key.
+   - Remove the entry for the storage emulator.
+1. Delete the security rules file: [`firebase/storage.rules`](./firebase/storage.rules).
+1. Make sure you don't use the `injectStorage` helper function in the frontend app.
+
+> [!TIP]
+>
+> These steps are especially useful if you're using this base template to build a functional prototype or internal tool, where you don't need all the Firebase services.
 
 ### Setting up a custom domain
 
-TODO
+> [!NOTE]
+>
+> This guide assumes you have a domain name registered and have access to the DNS settings for this domain.
+
+You can set up a custom domain for your Firebase app in the [Firebase Console](https://console.firebase.google.com/).
+
+To do this, follow the latest docs from Firebase. As of writing, these are the high level steps we're aware of:
+
+1. Custom domain set-up in the Hosting section
+1. Custom domain set-up for the email sender in Authentication
+1. Updated action link for the email templates in Authentication
+1. Updated “authorized domains” in Authentication
+1. Updated config in `environment.live.ts` in the app to reflect the new auth domain
 
 ### Customizing the Firebase emails
 
-TODO
+Some email templates (e.g. for Authentication) are customizable in the [Firebase Console](https://console.firebase.google.com/).
 
 ## How we decide what goes into the base template
 
