@@ -233,6 +233,10 @@ We'll refer to these in the rest of the document.
 
 ## [`app`] Feature folder structure
 
+| **:brain: Design decision** |
+| :-- |
+| We split sections of our app — e.g. the website — into _feature folders_, placed within the `app/src/app` folder, with shared features and utilities (accessible by any other feature) placed within the `app/src/app/shared` folder.<br><br>You are welcome to deviate from this though, where it makes sense for you. |
+
 | **:white_check_mark: Pattern** |
 | :-- |
 | We highly recommend separating the code within the top-level feature folders into the following subfolders: **`data`**, **`feature`**, **`ui`** and **`util`**. And trying to keep these at one hierarchical level. We've found that this is a great starting folder structure (and general architecture) which helps you quickly find stuff, whilst spending minimal time on figuring out what goes where. |
@@ -257,17 +261,25 @@ Instead, we do make use of [build-time prerendering](https://angular.dev/guide/p
 
 And then everything else in the app is fully dynamic (i.e. rendered on the client) — a special empty "loader" HTML file (prerendered from the [`LoaderShellComponent`](./app/src/app/loader-shell.component.ts)) is served for all these routes, and we've configured Firebase Hosting and the PWA set-up to serve this loader file for these routes (more details below).
 
+> [!NOTE]
+>
+> In this tech stack, we haven't included a CMS or dynamic page generation system (e.g. from Markdown files). Instead, we use static prerendered pages — via regular Angular components and routes — for the website content (and any other static pages).
+>
+> This is a simple and effective way to add static content, but will probably not scale up to larger uses cases (like a blog with hundreds of posts, or a full-on marketing website). At that point, you'd want to consider hosting your website as a separate static site (which has added benefits like: you can deploy it faster and more frequently).
+
 ## [`app`] The prerendering set-up
 
 For the build-time prerendering of pages, we:
 
 - Configure the `prerender` option in `angular.json` to prerender all paths defined in the [`app/prerendered-routes.txt`](./app/prerendered-routes.txt) file.
   - We also set `"discoverRoutes": false` so only the routes we explicitly specify are prerendered.
+- Specify all static paths we want prerendered, in the `prerendered-routes.txt` file.
+  - Out of the box, we have the website home page (`/`) and the about page (`/about`).
 - Specify the `/loader` path in the `prerendered-routes.txt` file, so that the loader shell is prerendered too.
   - The `/loader` route serves an empty shell of the app (using the [`LoaderShellComponent`](./app/src/app/loader-shell.component.ts)), which then loads the full app on the client-side. This route is defined in the [`app.routes.ts`](./app/src/app/app.routes.ts) file.
   - This is used as the default HTML file to serve for all fully dynamic parts of the app.
 
-So, when we run the production build (`pnpm build`) Angular will output static HTML files for the prerendered routes and an HTML file for the loader shell (as well as the usual JavaScript, CSS, etc. assets)
+So, when we run the production build (`pnpm build`) Angular will output static HTML files for the prerendered routes (including an HTML file for the loader shell) together with the usual JavaScript, CSS, etc. assets.
 
 > [!NOTE]
 >
@@ -312,9 +324,9 @@ Whilst on the topic of Firebase Hosting, we also set up some caching headers in 
 | :-- |
 | We use Angular's PWA capabilities, mainly the [service worker support](https://angular.dev/ecosystem/service-workers), and provide a basic PWA set-up out of the box, with a manifest, caching, icons and a simple in-app update notification.<br><br>Once the app is loaded on a user's device (via the web browser, or from the home screen / app launcher) any new updates are downloaded behind the scenes and the user is informed when there's an update. |
 
-The core of a PWA config is the [`manifest.webmanifest`](./app/src/manifest.webmanifest) file, which defines the app's name, icons, colors, etc. This is used by the browser to provide a more "app-like" experience when the user adds the app to their home screen / app launcher (depending on device capabilities). **You'll need to customize this file to specify your app's name and branding.**
+The core of a PWA config is the [`manifest.webmanifest`](./app/src/manifest.webmanifest) file, which defines the app's name, icons, colors, etc. This is used by the browser to provide a more "app-like" experience when the user adds the app to their home screen / app launcher (depending on device capabilities). This file follows the regular [PWA manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) spec. **You'll need to customize this file to specify your app's name and branding.**
 
-For the Angular service worker, the [`app/ngsw-config.json`](./app/ngsw-config.json) file is the main configuration, determining how to cache assets, handle updates, etc.
+For the Angular service worker, the [`app/ngsw-config.json`](./app/ngsw-config.json) file is the main configuration, determining how to cache assets, handle updates, etc ([docs](https://angular.io/guide/service-worker-config)).
 
 The [`app/src/app/app.component.ts`](./app/src/app/app.component.ts) file contains the logic for the in-app update notification, which checks for updates to the app and prompts the user to reload when a new version is available.
 
