@@ -44,7 +44,7 @@ For more details see the [Architecture and design decisions](./ARCHITECTURE.md) 
 - [Angular](https://angular.dev/) v17.3
 - [Angular Material](https://material.angular.io/) v17.3
 - [Tailwind CSS](https://tailwindcss.com/) v3.4
-- [NgRx Signals](https://ngrx.io/guide/signals) v17.1
+- [NgRx Signals](https://ngrx.io/guide/signals) v17.2
 - [RxFire](https://github.com/FirebaseExtended/rxfire) v6
 - [Firebase](https://firebase.google.com/)
   - [Hosting](https://firebase.google.com/products/hosting)
