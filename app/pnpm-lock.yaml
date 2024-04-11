@@ -45,11 +45,11 @@ dependencies:
     specifier: ^17.3.3
     version: 17.3.3(@angular/common@17.3.4)(@angular/core@17.3.4)
   '@ngrx/operators':
-    specifier: ^17.1.1
-    version: 17.1.1(rxjs@7.8.1)
+    specifier: ^17.2.0
+    version: 17.2.0(rxjs@7.8.1)
   '@ngrx/signals':
-    specifier: ^17.1.1
-    version: 17.1.1(@angular/core@17.3.4)(rxjs@7.8.1)
+    specifier: ^17.2.0
+    version: 17.2.0(@angular/core@17.3.4)(rxjs@7.8.1)
   consola:
     specifier: ^3.2.3
     version: 3.2.3
@@ -3713,8 +3713,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@ngrx/operators@17.1.1(rxjs@7.8.1):
-    resolution: {integrity: sha512-B+D8zGSsVeIzonKhDLhO/T8g+RykjFhyhCLNJTJ5wCXuVVgk20JCxRc/71nx6efNvO08uzyXPU4ncR3aHxuThQ==}
+  /@ngrx/operators@17.2.0(rxjs@7.8.1):
+    resolution: {integrity: sha512-W7SrGK4VQSJlCtMrkxNChVBDgJGSCdZ4yLBi80xoE9CmhTMMhu9J+8BbDDhZ+PPbTHylKJobkwHq+tJ8mkf4eQ==}
     peerDependencies:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
@@ -3722,8 +3722,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@ngrx/signals@17.1.1(@angular/core@17.3.4)(rxjs@7.8.1):
-    resolution: {integrity: sha512-9Rlw7u8LxkyS+HMZe7DzUkV1p/2IL5tDa1ZHhX8Ldilx4HoOHvISdzCagCpXMoXDLZGEaWOA/n/BcQQxsjytEg==}
+  /@ngrx/signals@17.2.0(@angular/core@17.3.4)(rxjs@7.8.1):
+    resolution: {integrity: sha512-tkkxifeOVPOhpTqbHyK1WOx4qz49HLR/h0vhaa/MRGRIZoOR/6gR4KB3hbC8FD3FdnuNqOgOZ2lGsTfWPB/6BQ==}
     peerDependencies:
       '@angular/core': ^17.0.0
       rxjs: ^6.5.3 || ^7.4.0
