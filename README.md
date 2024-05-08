@@ -466,3 +466,11 @@ If you want to continue learning more about the [FullStacksDev](https://FullStac
 These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering architecture, design decisions, data models, patterns, practices, tech stack capabilities and more.
 
 You can read more about the purpose and specs of the example apps here: TODO: link to the example apps spec page
+
+## License
+
+This template is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+
+> [!IMPORTANT]
+>
+> This template is provided as-is and with no warranty nor liability whatsoever — please make sure you keep a close eye on any costs incurred as you'll be liable for these and anything else that arises from using this template. We recommend you review the code and architecture carefully and adapt it to your needs before deploying to a live project, paying close attention to [Firebase's pricing model](https://firebase.google.com/pricing).
