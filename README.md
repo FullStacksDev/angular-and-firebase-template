@@ -404,7 +404,7 @@ You may not need the PWA bits in your app. Here's how you can remove them comple
 1. Remove the `@angular/service-worker` dependency from the [`app/package.json`](./app/package.json) file.
    - You'll need to run `pnpm install` in the top-level `app` folder to remove this dependency from your local `node_modules` folder and to update the `pnpm-lock.yaml` file.
 
-### Removing Firebase services (like Functions)
+### Removing Firebase services (like Functions and Storage)
 
 You may not need all the Firebase services in your app, especially Firebase Functions which requires a paid plan.
 
@@ -416,13 +416,14 @@ Here's how to remove Firebase Functions from your app:
    - Remove the entries for the functions, pubsub and eventarc emulators.
 1. It's easier to just keep the `firebase/functions` and `firebase/common` folders as they are — they won't be used or deployed.
 
-Here's how to remove a service like Firebase Storage from your app:
+Here's how to remove a service like Firebase Storage from your app (similar steps are applicable to Firestore and Realtime Database):
 
-1. Make sure you don't enable the Storage service in the Firebase Console (for the live project).
+1. Make sure you don't enable the Storage service in the Firebase Console (when setting up your live project).
 1. Update [`firebase/firebase.json`](./firebase/firebase.json):
    - Remove the `storage` top level key.
    - Remove the entry for the storage emulator.
 1. Delete the security rules file: [`firebase/storage.rules`](./firebase/storage.rules).
+1. Delete the corresponding security rules test suite file: [`firebase/test/storage/storage-rules.spec.ts`](./firebase/test/storage/storage-rules.spec.ts).
 1. Make sure you don't use the `injectStorage` helper function in the frontend app.
 
 > [!TIP]
