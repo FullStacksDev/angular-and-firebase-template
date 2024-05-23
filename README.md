@@ -133,6 +133,9 @@ What you need locally before you start:
 1. Edit or delete the root `README.md` and `ARCHITECTURE.md` files as you see fit.
    - You're welcome to keep these in your project and adapt them to your needs. Or feel free to delete them.
    - Because VS Code Workspaces [don't support adding single files](https://github.com/microsoft/vscode/issues/45177), you can open the files at the root of the repo (like `README.md`, `ARCHITECTURE.md` `edit` and `deploy`) by running `code {filename}` in the terminal (in the root folder). This will open the file in the current VS Code window.
+1. Rename the `LICENSE` file to `TEMPLATE_LICENSE` — you will need to keep this in as everything that comes with the base template is under this license and the original copyright notice must be kept (as per the terms of the MIT license).
+   - This does not mean you have to open source your app though — anything you add or substantially change can be licensed as you see fit.
+   - Note: this does not constituent legal advice, and you should seek proper advice on how to license your own code.
 1. Set up your live Firebase project and add the configuration to the app:
    1. See the next section for instructions on how to set up your "live" Firebase project, and then come back here.
    1. Take the newly created "PWA" config from the step above and update the `firebaseConfig` object in the `environment.live.ts` file.
@@ -473,4 +476,4 @@ This template is licensed under the MIT License — see the [LICENSE](./LICENSE)
 
 > [!IMPORTANT]
 >
-> This template is provided as-is and with no warranty nor liability whatsoever — please make sure you keep a close eye on any costs incurred as you'll be liable for these and anything else that arises from using this template. We recommend you review the code and architecture carefully and adapt it to your needs before deploying to a live project, paying close attention to [Firebase's pricing model](https://firebase.google.com/pricing).
+> This template is provided "as is" and with no warranty nor liability. Please make sure you keep a close eye on any costs incurred as you'll be liable for these and anything else that arises from using this template. We recommend you review the code and architecture carefully, adapt it to your needs and thoroughly test your solutions out, before deploying to a live project, paying close attention to [Firebase's pricing model](https://firebase.google.com/pricing).
