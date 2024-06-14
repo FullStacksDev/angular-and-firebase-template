@@ -12,11 +12,11 @@ describe('HomePageComponent', () => {
   });
 
   it('has a heading', () => {
-    MockRender(HomePageComponent);
+    const fixture = MockRender(HomePageComponent);
 
-    const el = ngMocks.find('h1');
+    const el = ngMocks.find(fixture, 'h1');
     expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toContain(
+    expect(ngMocks.formatText(el)).toContain(
       'This is the FullStacksDev Angular and Firebase template running on Firebase',
     );
   });

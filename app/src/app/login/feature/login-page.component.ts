@@ -7,7 +7,7 @@ import { LoginFlowComponent } from './login-flow.component';
   standalone: true,
   template: `
     @defer {
-      <section class="flex justify-center py-8">
+      <section class="flex justify-center py-6">
         <app-login-flow />
       </section>
     } @loading (after 80ms) {

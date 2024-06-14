@@ -12,9 +12,9 @@ describe('WebsiteShellComponent', () => {
   });
 
   it('has a header', () => {
-    MockRender(WebsiteShellComponent);
+    const fixture = MockRender(WebsiteShellComponent);
 
-    const el = ngMocks.find('header');
+    const el = ngMocks.find(fixture, 'header');
     expect(el).toBeTruthy();
   });
 

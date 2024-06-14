@@ -21,20 +21,20 @@ describe('AuthStatusComponent', () => {
   it('shows a log in link when not authenticated', () => {
     MockInstance(AuthStore, 'isAuthenticated', signal(false));
 
-    MockRender(AuthStatusComponent);
+    const fixture = MockRender(AuthStatusComponent);
 
-    const el = ngMocks.find('a');
+    const el = ngMocks.find(fixture, 'a');
     expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toContain('Log in');
+    expect(ngMocks.formatText(el)).toContain('Log in');
   });
 
   it('shows a log out button when authenticated', () => {
     MockInstance(AuthStore, 'isAuthenticated', signal(true));
 
-    MockRender(AuthStatusComponent);
+    const fixture = MockRender(AuthStatusComponent);
 
-    const el = ngMocks.find('button');
+    const el = ngMocks.find(fixture, 'button');
     expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toContain('Log out');
+    expect(ngMocks.formatText(el)).toContain('Log out');
   });
 });

@@ -14,11 +14,13 @@ export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
     const runtimeService = inject(RuntimeService);
     const router = inject(Router);
 
-    logger.log(`Factory called - allowOnly = ${allowOnly}, route.path = ${route.path}`);
+    logger.log(
+      `Factory called - allowOnly = ${allowOnly}, route.path = ${route.path ?? 'undefined'}`,
+    );
 
     if (runtimeService.isServer) {
-      logger.log('Server side - render the /loader view instead');
-      return router.createUrlTree(['/loader']);
+      logger.log(`Server side - don't allow auth guard to proceed — let client deal with it`);
+      return false;
     }
 
     const authStore = inject(AuthStore);
@@ -34,7 +36,7 @@ export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
             return isAuthenticated
               ? true
               : router.createUrlTree(['/login'], {
-                  queryParams: { return: router.getCurrentNavigation()?.extractedUrl?.toString() },
+                  queryParams: { return: router.getCurrentNavigation()?.extractedUrl.toString() },
                 });
           case 'not-authed':
             return isAuthenticated ? router.createUrlTree(['/']) : true;

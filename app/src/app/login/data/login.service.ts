@@ -3,7 +3,6 @@ import { injectAuth } from '@app-shared/firebase/auth';
 import { createLogger } from '@app-shared/logger';
 import {
   ActionCodeSettings,
-  AuthError,
   isSignInWithEmailLink,
   sendSignInLinkToEmail,
   signInWithEmailLink,
@@ -24,8 +23,7 @@ export class LoginService {
         handleCodeInApp: true,
       } satisfies ActionCodeSettings;
       await sendSignInLinkToEmail(this.#auth, email, actionCodeSettings);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
       this.handleFirebaseError(error);
     }
   }
@@ -41,18 +39,17 @@ export class LoginService {
       } else {
         throw new Error('Invalid login link');
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
       this.handleFirebaseError(error);
     }
   }
 
-  private handleFirebaseError(error: AuthError): string {
+  private handleFirebaseError(error: unknown): void {
     logger.error('Firebase Auth error:', error);
 
     let message = 'Unknown error';
 
-    if (error && error.code) {
+    if (typeof error === 'object' && error && 'code' in error && typeof error.code === 'string') {
       message = this.getAuthErrorMessageForCode(error.code);
     }
 

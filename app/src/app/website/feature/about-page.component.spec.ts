@@ -12,10 +12,10 @@ describe('AboutPageComponent', () => {
   });
 
   it('has a heading', () => {
-    MockRender(AboutPageComponent);
+    const fixture = MockRender(AboutPageComponent);
 
-    const el = ngMocks.find('h1');
+    const el = ngMocks.find(fixture, 'h1');
     expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toContain('About');
+    expect(ngMocks.formatText(el)).toContain('About');
   });
 });

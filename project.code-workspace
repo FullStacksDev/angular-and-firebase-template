@@ -22,9 +22,6 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.linkedEditing": true,
-    "eslint.options": {
-      "extensions": [".ts", ".html"]
-    },
     "eslint.validate": ["javascript", "typescript", "html"],
     "editor.wordWrap": "on",
     "files.exclude": {
