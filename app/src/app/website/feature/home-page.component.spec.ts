@@ -17,7 +17,7 @@ describe('HomePageComponent', () => {
     const el = ngMocks.find('h1');
     expect(el).toBeTruthy();
     expect(el.nativeElement.textContent).toContain(
-      'This is the FullStacks.dev Angular and Firebase template running on Firebase',
+      'This is the FullStacksDev Angular and Firebase template running on Firebase',
     );
   });
 });

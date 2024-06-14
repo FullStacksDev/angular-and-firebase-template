@@ -1,6 +1,6 @@
-# The [FullStacksDev](https://FullStacks.dev) Angular and Firebase base template
+# The [FullStacksDev](https://fullstacks.dev) Angular and Firebase base template
 
-Part of the curated [**FullStacksDev Angular and Firebase tech stack**](https://FullStacks.dev/TODO). For solo devs and very small teams.
+Part of the curated [**FullStacksDev Angular and Firebase tech stack**](https://fullstacks.dev/#angular-and-firebase). For solo devs and very small teams.
 
 An opinionated full-stack starting point for building a web app, using Angular and Firebase. Aiming to be lean and useful enough so you can hit the ground running and focus on stuff that matters.
 
@@ -455,20 +455,20 @@ Some email templates (e.g. for Authentication) are customizable in the [Firebase
 
 ## How we decide what goes into the base template
 
-It's important that the base template is as lean and broadly useful as possible, whilst maintaining the opinionated approach to the tech stack, architecture and patterns that we are developing as part of the _curated tech stacks_ approach in [FullStacksDev](https://FullStacks.dev).
+It's important that the base template is as lean and broadly useful as possible, whilst maintaining the opinionated approach to the tech stack, architecture and patterns that we are developing as part of the _curated tech stacks_ approach in [FullStacksDev](https://fullstacks.dev).
 
 For this reason, we carefully consider what goes into the base template and err on the side of caution. New capabilities are only added to the base template when they are proven to be broadly useful and fit within the tech stack, by first applying them to real-world projects and the example apps.
 
 ## What next? Check out the example apps for this tech stack…
 
-If you want to continue learning more about the [FullStacksDev](https://FullStacks.dev) Angular and Firebase tech stack you can check out the premium example apps built using this template:
+If you want to continue learning more about the [FullStacksDev](https://fullstacks.dev) Angular and Firebase tech stack you can check out the premium example apps built using this template:
 
-- [Simple example app](TODO)
-- [Advanced example app](TODO)
+- [Simple example app](https://github.com/FullStacksDev/angular-and-firebase-simple-example-app)
+- [Advanced example app](https://github.com/FullStacksDev/angular-and-firebase-advanced-example-app)
 
 These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering architecture, design decisions, data models, patterns, practices, tech stack capabilities and more.
 
-You can read more about the purpose and specs of the example apps here: TODO: link to the example apps spec page
+You can read more about the [purpose and specs of the example apps](https://fullstacks.dev/example-apps).
 
 ## License
 
