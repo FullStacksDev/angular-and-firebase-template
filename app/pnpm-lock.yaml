@@ -48,11 +48,11 @@ importers:
         specifier: ^18.0.4
         version: 18.0.4(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))
       '@ngrx/operators':
-        specifier: ^17.2.0
-        version: 17.2.0(rxjs@7.8.1)
+        specifier: ^18.0.0
+        version: 18.0.0(rxjs@7.8.1)
       '@ngrx/signals':
-        specifier: ^17.2.0
-        version: 17.2.0(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
+        specifier: 18.0.0-rc.1
+        version: 18.0.0-rc.1(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -66,8 +66,8 @@ importers:
         specifier: ^3.2.0
         version: 3.4.0(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
       rxfire:
-        specifier: ^6.0.5
-        version: 6.0.5(firebase@10.12.2)(rxjs@7.8.1)
+        specifier: ^6.0.6-canary.5cfad21
+        version: 6.0.6-canary.5cfad21(firebase@10.12.2)(rxjs@7.8.1)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -145,7 +145,7 @@ importers:
         specifier: ~2.1.0
         version: 2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.3))(karma@6.4.3)
       ng-mocks:
-        specifier: ^14.12.2
+        specifier: ^14.13.0
         version: 14.13.0(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@18.0.3(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@18.0.3(@angular/animations@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/platform-browser@18.0.3(@angular/animations@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@18.0.3(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7)))
       postcss:
         specifier: ^8.4.38
@@ -154,8 +154,8 @@ importers:
         specifier: ^3.2.5
         version: 3.3.2
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.14
-        version: 0.5.14(prettier@3.3.2)
+        specifier: ^0.6.4
+        version: 0.6.4(prettier@3.3.2)
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.4
@@ -1822,15 +1822,15 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@ngrx/operators@17.2.0':
-    resolution: {integrity: sha512-W7SrGK4VQSJlCtMrkxNChVBDgJGSCdZ4yLBi80xoE9CmhTMMhu9J+8BbDDhZ+PPbTHylKJobkwHq+tJ8mkf4eQ==}
+  '@ngrx/operators@18.0.0':
+    resolution: {integrity: sha512-JclwX/YCxgNWj5qLAcoSN74u0MkXOQ+y0+gVeSdiHDnFSmXApG52FG4nuqcNCjf2/H1Z8XxA/pgbtq04dEvS6w==}
     peerDependencies:
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@ngrx/signals@17.2.0':
-    resolution: {integrity: sha512-tkkxifeOVPOhpTqbHyK1WOx4qz49HLR/h0vhaa/MRGRIZoOR/6gR4KB3hbC8FD3FdnuNqOgOZ2lGsTfWPB/6BQ==}
+  '@ngrx/signals@18.0.0-rc.1':
+    resolution: {integrity: sha512-kH58iRtr94mAW0O3RZLGkA16Acg4KXObe1JzRUJX4VH/RB1nj6hT2DnfmxYCfZGrEQeA7yZgkIkAw1A4oilpgQ==}
     peerDependencies:
-      '@angular/core': ^17.0.0
+      '@angular/core': ^18.0.0
       rxjs: ^6.5.3 || ^7.4.0
     peerDependenciesMeta:
       rxjs:
@@ -4529,8 +4529,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier-plugin-tailwindcss@0.5.14:
-    resolution: {integrity: sha512-Puaz+wPUAhFp8Lo9HuciYKM2Y2XExESjeT+9NQoVFXZsPPnc9VYss2SpxdQ6vbatmt8/4+SN0oe0I1cPDABg9Q==}
+  prettier-plugin-tailwindcss@0.6.4:
+    resolution: {integrity: sha512-3vhbIvlKyAWPaw9bUr2cw6M1BGx2Oy9CCLJyv+nxEiBGCTcL69WcAz2IFMGqx8IXSzQCInGSo2ujAByg9poHLQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -4769,8 +4769,8 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
-  rxfire@6.0.5:
-    resolution: {integrity: sha512-ycBsANGbya3GNtOBKzZVATLEV+0S9gUrlTfwnN15TCXtgG8OgIMAuv2k9+kMeVaevp/DRp1KT+vYf6Wkop6gvw==}
+  rxfire@6.0.6-canary.5cfad21:
+    resolution: {integrity: sha512-JZmkMjyypcod26Rx//gbTq8v3/Pzjl3nW2JpZJkUaW4nJ5VSJblt0OPVFzfOLXKP5p4DT0x97WEnBM/mQtodvA==}
     peerDependencies:
       firebase: ^9.0.0 || ^10.0.0
       rxjs: ^6.0.0 || ^7.0.0
@@ -7922,12 +7922,12 @@ snapshots:
   '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.3':
     optional: true
 
-  '@ngrx/operators@17.2.0(rxjs@7.8.1)':
+  '@ngrx/operators@18.0.0(rxjs@7.8.1)':
     dependencies:
       rxjs: 7.8.1
       tslib: 2.6.3
 
-  '@ngrx/signals@17.2.0(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)':
+  '@ngrx/signals@18.0.0-rc.1(@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)':
     dependencies:
       '@angular/core': 18.0.3(rxjs@7.8.1)(zone.js@0.14.7)
       tslib: 2.6.3
@@ -10933,7 +10933,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.5.14(prettier@3.3.2):
+  prettier-plugin-tailwindcss@0.6.4(prettier@3.3.2):
     dependencies:
       prettier: 3.3.2
 
@@ -11136,7 +11136,7 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  rxfire@6.0.5(firebase@10.12.2)(rxjs@7.8.1):
+  rxfire@6.0.6-canary.5cfad21(firebase@10.12.2)(rxjs@7.8.1):
     dependencies:
       firebase: 10.12.2
       rxjs: 7.8.1
