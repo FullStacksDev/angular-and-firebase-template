@@ -2,7 +2,7 @@
 
 Part of the curated [**FullStacksDev Angular and Firebase tech stack**](https://fullstacks.dev/#angular-and-firebase). For solo devs and very small teams.
 
-An opinionated full-stack starting point for building a web app, using Angular and Firebase. Aiming to be lean and useful enough so you can hit the ground running and focus on stuff that matters.
+An opinionated full-stack starting point for building a web app, using Angular and Firebase. Aiming to be lean and useful enough so you can hit the ground running and focus on stuff that matters. With enough room for you to extend as you need.
 
 You are free to use and customize this template as you want — build a prototype, an internal tool, a side project, or the next million-dollar web app.
 
