@@ -266,7 +266,7 @@ For the `app` folder:
 
 1. First run `pnpm ng update` and follow the instructions.
    - This will update the Angular specific dependencies (and any other dependencies that support Angular Schematics for updates).
-   - You can choose to skip this step, especially if there is a major version of Angular with breaking changes (in which case you could choose to wait until the base template has been updated first). If you do skip this step, makes you don't inadvertently update the version of any Angular etc. packages in the next step.
+   - You can choose to skip this step, especially if there is a major version of Angular with breaking changes (in which case you could choose to wait until the base template has been updated first). If you do skip this step, make sure you don't inadvertently update the version of any Angular etc. packages in the next step.
 1. Then run `pnpm update --interactive --latest` and follow the instructions.
    - You can select the packages you want to update.
 
@@ -287,13 +287,13 @@ Make sure to do all this in a branch, test locally and push to GitHub, then open
 
 > [!TIP]
 >
-> When updating the Angular dependencies using the Angular CLI, you may want to use <https://github.com/cexbrayat/angular-cli-diff> to find any other changes that could be made. Sometimes, the Angular folks will automatically make some of these changes for you (via the `ng update` process), but sometimes they won't. The `angular-cli-diff` is a really useful community project that can help you find any other relevant changes and make them manually. We usually do this ourselves when updating the base template and will provide instruction on what you could update (see the next section).
+> When updating the Angular dependencies using the Angular CLI, you may want to use <https://github.com/cexbrayat/angular-cli-diff> to find any other changes that could be made. Sometimes, the Angular folks will automatically make some of these changes for you (via the `ng update` process), but sometimes they won't. The `angular-cli-diff` is a really useful community project that can help you find any other relevant changes and make them manually. We usually do this ourselves when updating the base template and will provide instructions on what you could update, as part of our official releases of the template (see the next section).
 
 ### 2. How to update your app to a base template release
 
 > [!NOTE]
 >
-> Once the base template is launched and in a stable version, there are unlikely to be _frequent_ changes, so hopefully you won't need to do this often.
+> Once the base template is out of **beta** and released in a stable version, there are unlikely to be _frequent_ changes, so hopefully you won't need to do this often.
 >
 > Also, we won't usually make releases for simple dependency updates, or content changes.
 
