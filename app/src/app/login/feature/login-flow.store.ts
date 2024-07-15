@@ -94,7 +94,7 @@ const _LoginFlowStore = signalStore(
     return {
       triggerLoginLink: rxMethod<{ email: string }>(
         pipe(
-          tap((params) => logger.log(`#triggerLoginLink - email = ${params.email}`)),
+          tap((params) => logger.log(`triggerLoginLink - email = ${params.email}`)),
           tap(() => setProcessing()),
           exhaustMap(({ email }) => {
             return from(loginService.triggerLoginLink(email, document.location.href)).pipe(
@@ -118,7 +118,7 @@ const _LoginFlowStore = signalStore(
       // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
       handleLoginLinkIfAvailable: rxMethod<void>(
         pipe(
-          tap(() => logger.log('#handleLoginLinkIfAvailable')),
+          tap(() => logger.log('handleLoginLinkIfAvailable')),
           map(() => document.location.href),
           filter((url) => loginService.isLoginLink(url)),
           tap(() => setProcessing()),
@@ -146,15 +146,15 @@ const _LoginFlowStore = signalStore(
           }),
         ),
       ),
-      completeLogin: () => {
+      completeLogin: async () => {
         setCompleted();
 
-        let url = route.snapshot.queryParamMap.get('return') || '/';
+        let url = route.snapshot.queryParamMap.get('return') ?? '/';
         // DO NOT redirect to an external URL (for security reasons).
         if (!url.startsWith('/')) {
           url = '/';
         }
-        router.navigateByUrl(url);
+        await router.navigateByUrl(url);
       },
     };
   }),
@@ -166,7 +166,7 @@ const _LoginFlowStore = signalStore(
       effect(
         () => {
           if (store.user()) {
-            store.completeLogin();
+            void store.completeLogin();
           }
         },
         { allowSignalWrites: true },

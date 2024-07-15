@@ -1,15 +1,24 @@
 import { ChangeDetectionStrategy, Component, OnInit, effect, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterLink } from '@angular/router';
 import { LoginFormComponent } from '../ui/login-form.component';
 import { LoginFlowStore } from './login-flow.store';
 
 @Component({
   selector: 'app-login-flow',
   standalone: true,
-  imports: [MatSnackBarModule, LoginFormComponent],
+  imports: [RouterLink, MatButtonModule, MatIconModule, MatSnackBarModule, LoginFormComponent],
   providers: [LoginFlowStore],
   template: `
-    <div class="w-[360px]">
+    <div class="flex justify-center">
+      <a mat-button [routerLink]="['/']">
+        <mat-icon>arrow_back</mat-icon>
+        Home
+      </a>
+    </div>
+    <div class="mt-6 w-[360px]">
       @if (status() === 'error') {
         <div class="my-2 rounded bg-red-100 px-3 py-2 text-center text-sm text-red-700">
           {{ error() }}

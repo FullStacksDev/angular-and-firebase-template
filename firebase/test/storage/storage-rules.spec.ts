@@ -32,7 +32,6 @@ beforeEach(async () => {
 });
 
 describe('Storage security rules', () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   test('does not allow any reads, writes or deletes to an unused object by an unauthenticated user', async () => {
     const storage = testEnv.unauthenticatedContext().storage();
     const objectRef = ref(storage, 'unused.jpg');

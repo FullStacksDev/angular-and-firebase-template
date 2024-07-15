@@ -23,8 +23,8 @@ export class AuthService {
           displayName: firebaseUser.displayName,
           email: firebaseUser.email,
           emailVerified: firebaseUser.emailVerified,
-          lastSignInTime: firebaseUser.metadata.lastSignInTime || null,
-          creationTime: firebaseUser.metadata.creationTime || null,
+          lastSignInTime: firebaseUser.metadata.lastSignInTime ?? null,
+          creationTime: firebaseUser.metadata.creationTime ?? null,
         };
       } else {
         return null;

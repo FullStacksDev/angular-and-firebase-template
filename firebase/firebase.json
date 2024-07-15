@@ -45,7 +45,7 @@
       },
       {
         "source": "**",
-        "destination": "/loader/index.html"
+        "destination": "/index.csr.html"
       }
     ],
     "headers": [

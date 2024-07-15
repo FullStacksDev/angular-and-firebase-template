@@ -5,11 +5,12 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2017",
-  },
+    "target": "es2017"
+  }
 }

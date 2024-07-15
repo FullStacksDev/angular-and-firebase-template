@@ -27,16 +27,16 @@ describe('LoginFormComponent', () => {
   });
 
   it('renders the form', () => {
-    MockRender(TestComponent);
+    const fixture = MockRender(TestComponent);
 
-    const el = ngMocks.find('form');
+    const el = ngMocks.find(fixture, 'form');
     expect(el).toBeTruthy();
   });
 
   it('renders the progress bar when processing', () => {
-    MockRender(TestComponent, { processing: true });
+    const fixture = MockRender(TestComponent, { processing: true });
 
-    const el = ngMocks.find('mat-progress-bar');
+    const el = ngMocks.find(fixture, 'mat-progress-bar');
     expect(el).toBeTruthy();
   });
 });

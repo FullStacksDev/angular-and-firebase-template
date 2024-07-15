@@ -4,7 +4,11 @@ Part of the curated [**FullStacksDev Angular and Firebase tech stack**](https://
 
 An opinionated full-stack starting point for building a web app, using Angular and Firebase. Aiming to be lean and useful enough so you can hit the ground running and focus on stuff that matters. With enough room for you to extend as you need.
 
-You are free to use and customize this template as you want — build a prototype, an internal tool, a side project, or the next million-dollar web app.
+You are free to use and customize this template as you want — build a prototype, an internal tool, a side project, or the next big thing.
+
+> [!IMPORTANT]
+>
+> This is currently in **beta**. We're actively working on it and will be making regular updates — expect big changes and improvements until it gets to a stable release. Feel free to give your feedback and suggestions via the Issues tab.
 
 ## Features
 
@@ -41,10 +45,10 @@ For more details see the [Architecture and design decisions](./ARCHITECTURE.md) 
 
 - [Node.js](https://nodejs.org/en/) v20.x
 - [TypeScript](https://www.typescriptlang.org/) v5.4
-- [Angular](https://angular.dev/) v17.3
-- [Angular Material](https://material.angular.io/) v17.3
+- [Angular](https://angular.dev/) v18.1
+- [Angular Material](https://material.angular.io/) v18.1
 - [Tailwind CSS](https://tailwindcss.com/) v3.4
-- [NgRx Signals](https://ngrx.io/guide/signals) v17.2
+- [NgRx Signals](https://ngrx.io/guide/signals) v18.0
 - [RxFire](https://github.com/FirebaseExtended/rxfire) v6
 - [Firebase](https://firebase.google.com/)
   - [Hosting](https://firebase.google.com/products/hosting)
@@ -256,13 +260,13 @@ For apps built on this base template there are two things you need to do to keep
 
 ### 1. How to update dependencies
 
-You can update some or all of the dependencies in the `app` and `firebase` folders using `pnpm` (our chosen pack manager):
+You can update some or all of the dependencies in the `app` and `firebase` folders using the Angular CLI and `pnpm` (our chosen package manager):
 
 For the `app` folder:
 
 1. First run `pnpm ng update` and follow the instructions.
-   - This will update the Angular specific dependencies (and any other dependencies that support Angular Schematics).
-   - You can choose to skip this step, especially if there is a major version of Angular with breaking changes (in which case you could choose to wait until the base template has been updated first).
+   - This will update the Angular specific dependencies (and any other dependencies that support Angular Schematics for updates).
+   - You can choose to skip this step, especially if there is a major version of Angular with breaking changes (in which case you could choose to wait until the base template has been updated first). If you do skip this step, makes you don't inadvertently update the version of any Angular etc. packages in the next step.
 1. Then run `pnpm update --interactive --latest` and follow the instructions.
    - You can select the packages you want to update.
 
@@ -281,11 +285,15 @@ Make sure to do all this in a branch, test locally and push to GitHub, then open
 >
 > Sometimes, especially with major version updates, you may need to delete the `node_modules` folder and `pnpm-lock.yaml` file, and then run `pnpm install` to rebuild the dependency tree and lockfile. This ensures the very latest dependencies (matched to the versions defined in the relevant `package.json`) are used (especially subdependencies).
 
+> [!TIP]
+>
+> When updating the Angular dependencies using the Angular CLI, you may want to use <https://github.com/cexbrayat/angular-cli-diff> to find any other changes that could be made. Sometimes, the Angular folks will automatically make some of these changes for you (via the `ng update` process), but sometimes they won't. The `angular-cli-diff` is a really useful community project that can help you find any other relevant changes and make them manually. We usually do this ourselves when updating the base template and will provide instruction on what you could update (see the next section).
+
 ### 2. How to update your app to a base template release
 
 > [!NOTE]
 >
-> Once the base template is launched and in a stable version, there are unlikely to be frequent changes, so hopefully you won't need to do this often.
+> Once the base template is launched and in a stable version, there are unlikely to be _frequent_ changes, so hopefully you won't need to do this often.
 >
 > Also, we won't usually make releases for simple dependency updates, or content changes.
 

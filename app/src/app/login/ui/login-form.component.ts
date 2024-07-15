@@ -21,16 +21,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   template: `
     <form [formGroup]="formGroup" #form="ngForm" (ngSubmit)="submit(form)" novalidate>
       <mat-card>
-        <div class="mt-2 text-center">
+        <mat-card-header class="mt-1 justify-center">
           <mat-card-title>Login</mat-card-title>
-        </div>
+        </mat-card-header>
         <mat-card-content>
-          <div class="mt-3 rounded bg-blue-100 px-3 py-2 text-center text-sm text-blue-700">
-            We'll send you an email with a link to log in
-            <br />
-            (and automatically create a new account if needed)
-          </div>
-
           <div class="mt-4">
             <mat-form-field class="w-full">
               <mat-label>Email address</mat-label>
@@ -41,14 +35,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
             </mat-form-field>
           </div>
         </mat-card-content>
-        <mat-card-actions align="end">
-          <button
-            class="mr-2"
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="processing()"
-          >
+        <mat-card-actions class="py-4" align="end">
+          <button class="mr-2" mat-flat-button type="submit" [disabled]="processing()">
             Send login link
           </button>
         </mat-card-actions>
@@ -58,6 +46,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
           }
         </mat-card-footer>
       </mat-card>
+
+      <div class="text mt-6 rounded bg-blue-100 px-3 py-2 text-center text-blue-700">
+        We'll send you an email with a link to log in
+        <br />
+        (and automatically create a new account if needed)
+      </div>
     </form>
   `,
   styles: ``,
