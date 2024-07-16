@@ -469,14 +469,14 @@ For this reason, we carefully consider what goes into the base template and err 
 
 ## What next? Check out the example apps for this tech stack…
 
-If you want to continue learning more about the [FullStacksDev](https://fullstacks.dev) Angular and Firebase tech stack you can check out the premium example apps built using this template:
+If you want to continue learning more about the [FullStacksDev Angular and Firebase tech stack](https://fullstacks.dev/stacks/angular-and-firebase) you can check out the premium example apps built using this template (requires a premium upgrade):
 
 - [Simple example app](https://github.com/FullStacksDev/angular-and-firebase-simple-example-app)
-- [Advanced example app](https://github.com/FullStacksDev/angular-and-firebase-advanced-example-app)
+- [Coming soon — in progress] Patterns example app
 
-These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering architecture, design decisions, data models, patterns, practices, tech stack capabilities and more.
+These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering patterns, architecture decisions, design decisions, data models, tech stack capabilities, learnings and more.
 
-You can read more about the [purpose and specs of the example apps](https://fullstacks.dev/example-apps).
+You can read more about the [purpose and specs of the example apps](https://fullstacks.dev/example-apps-and-patterns).
 
 ## License
 
