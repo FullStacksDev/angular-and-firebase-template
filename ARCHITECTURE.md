@@ -126,7 +126,7 @@ The deploy script will deploy to this live project (details below).
 
 > [!TIP]
 >
-> In the [advanced example app](TODO) we set up an intermediate staging environment, together with continuous deployment (CD), which requires a bit more set-up and configuration.
+> In the patterns example app (coming soon) we show you how to set up an intermediate staging environment, together with continuous deployment (CD), which requires a bit more set-up and configuration.
 
 ## How the deploy works
 
@@ -148,7 +148,7 @@ The [`./deploy`](./deploy) script in the root of the project is a simple script 
 >
 > This is designed to be run locally only (not as part of a CI/CD pipeline) as it benefits from your locally authenticated `firebase` CLI.
 >
-> For CI/CD you'd want to update the GitHub Actions pipeline to deploy to Firebase, which would involve setting up a service account and securely storing the credentials in GitHub Secrets so that the pipeline can authenticate with Firebase. We show you how to do this in the [advanced example app](TODO).
+> For CI/CD you'd want to update the GitHub Actions pipeline to deploy to Firebase, which would involve setting up a service account and securely storing the credentials in GitHub Secrets so that the pipeline can authenticate with Firebase. We show you how to do this in the patterns example app (coming soon).
 
 > [!IMPORTANT]
 >
@@ -170,7 +170,7 @@ The [`./deploy`](./deploy) script in the root of the project is a simple script 
 
 > [!NOTE]
 >
-> With the `OnPush` change detection, there is a caveat that forms _sometimes_ don't behave well, so in rare cases you'd need to use the `ChangeDetectorRef` to manually mark a component for change detection — this is something we'll explore in the [advanced example app](TODO).
+> With the `OnPush` change detection, there is a caveat that forms _sometimes_ don't behave well, so in rare cases you'd need to use the `ChangeDetectorRef` to manually mark a component for change detection.
 
 | **:brain: Design decision** |
 | :-- |
@@ -244,7 +244,7 @@ This is a recommended folder structure based on [Nx's suggested library types](h
 
 For features within the `shared` folder you should follow the same structure, except you probably won't need a `feature` subfolder within each shared feature since these are shared bits of code for use elsewhere.
 
-As things grow you may need to adapt and tweak this structure (e.g. to add another level in the hierarchy) — we show you how to tackle this in the [advanced example app](TODO).
+As things grow you may need to adapt and tweak this structure (e.g. to add another level in the hierarchy) — we show you how to tackle this in the patterns example app (coming soon).
 
 ## [`app`] Static prerendered pages and dynamic pages only
 
@@ -504,7 +504,7 @@ We do recommend splitting out the actual functions into separate files within th
 
 > [!TIP]
 >
-> We make use of Firebase Functions extensively in the [advanced example app](TODO).
+> We make use of Firebase Functions extensively in the patterns example app (coming soon).
 
 ## [`firebase`] Security rules
 
@@ -540,7 +540,7 @@ See the files within the [`firebase/test`](./firebase/test/) folder for the secu
 
 > [!TIP]
 >
-> We cover more Firebase testing, such as functions testing and integration testing, in the [advanced example app](TODO).
+> We cover more Firebase testing, such as functions testing and integration testing, in the patterns example app (coming soon).
 
 ## [`firebase`] Linting using ESLint and formatting using Prettier
 
@@ -568,4 +568,4 @@ Use the [Firebase Console](https://console.firebase.google.com/) to manage and m
 >
 > Firebase currently doesn't have a way to set a hard limit on costs, so you need to be vigilant about monitoring your usage and costs, and how you build features to make sure of Firebase services. Ultimately, you are responsible for the costs incurred by your use of services like Firebase.
 >
-> We cover some strategies for managing costs in the [advanced example app](TODO).
+> We cover some strategies for managing costs in the patterns example app (coming soon).
