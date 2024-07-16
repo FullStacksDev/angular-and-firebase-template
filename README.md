@@ -472,7 +472,7 @@ For this reason, we carefully consider what goes into the base template and err 
 If you want to continue learning more about the [FullStacksDev Angular and Firebase tech stack](https://fullstacks.dev/stacks/angular-and-firebase) you can check out the premium example apps built using this template (requires a premium upgrade):
 
 - [Simple example app](https://github.com/FullStacksDev/angular-and-firebase-simple-example-app)
-- [Coming soon — in progress] Patterns example app
+- Patterns example app (coming soon)
 
 These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering patterns, architecture decisions, design decisions, data models, tech stack capabilities, learnings and more.
 
