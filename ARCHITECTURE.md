@@ -6,7 +6,7 @@ This document covers the overall architecture and design decisions made for this
 >
 > Feel free to deviate from these as you wish. The base template is designed to be fairly flexible so you can adapt it to your needs. Though note that deviations may require more tinkering to get everything to work well together.
 >
-> If you're keen on the full _curated tech stack_ experience — where we build on top of this base template with more opinionated patterns, practices and approaches — then check out the [example apps](TODO).
+> If you're keen on the full _curated tech stack_ experience — where we build on top of this base template with more opinionated patterns, practices and approaches — then check out the [example apps](https://fullstacks.dev/stacks/angular-and-firebase).
 
 > [!TIP]
 >
