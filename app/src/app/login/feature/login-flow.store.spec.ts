@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockBuilder, ngMocks } from 'ng-mocks';
 import { LoginService } from '../data/login.service';
-import { LoginFlowStore } from './login-flow.store';
+import { LoginFlowStore, LoginFlowStoreInstanceType } from './login-flow.store';
 
 describe('LoginFlowStore', () => {
   beforeEach(() =>
@@ -9,7 +9,7 @@ describe('LoginFlowStore', () => {
   );
 
   it('should create', () => {
-    const store = ngMocks.get(LoginFlowStore);
+    const store = ngMocks.get<LoginFlowStoreInstanceType>(LoginFlowStore);
     expect(store).toBeTruthy();
   });
 });
