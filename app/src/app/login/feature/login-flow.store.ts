@@ -52,7 +52,7 @@ const initialState: LoginFlowState = {
 
 const logger = createLogger('LoginFlowStore');
 
-export type LoginFlowStoreInstanceType = InstanceType<typeof LoginFlowStore>;
+export type LoginFlowStore = InstanceType<typeof LoginFlowStore>;
 
 export const LoginFlowStore = signalStore(
   withState<LoginFlowState>(initialState),

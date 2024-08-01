@@ -51,7 +51,7 @@ const initialState: AuthState = {
 
 const logger = createLogger('AuthStore');
 
-export type AuthStoreInstanceType = InstanceType<typeof AuthStore>;
+export type AuthStore = InstanceType<typeof AuthStore>;
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
@@ -126,7 +126,7 @@ export const AuthStore = signalStore(
   }),
 );
 
-function helpersFactory(store: AuthStoreInstanceType) {
+function helpersFactory(store: AuthStore) {
   const waitUntilConnected$ = toObservable(store.status).pipe(
     tap((status) => logger.log('waitUntilConnected$ - status =', status)),
     filter((status) => status === 'connected'),
