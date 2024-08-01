@@ -3,7 +3,7 @@ import { CanMatchFn, Route, Router } from '@angular/router';
 import { createLogger } from '@app-shared/logger';
 import { RuntimeService } from '@app-shared/runtime.service';
 import { map, take } from 'rxjs';
-import { AuthStore } from '../data/auth.store';
+import { AuthStore, injectAuthStoreHelpers } from '../data/auth.store';
 
 const logger = createLogger('authGuard');
 
@@ -23,9 +23,10 @@ export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
       return false;
     }
 
+    const { waitUntilConnected$ } = injectAuthStoreHelpers();
     const authStore = inject(AuthStore);
 
-    return authStore.waitUntilConnected$.pipe(
+    return waitUntilConnected$.pipe(
       map(() => {
         const isAuthenticated = authStore.isAuthenticated();
 

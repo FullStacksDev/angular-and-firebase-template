@@ -1,4 +1,4 @@
-import { Injectable, effect, inject } from '@angular/core';
+import { effect, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStore } from '@app-shared/auth/data/auth.store';
 import { createLogger } from '@app-shared/logger';
@@ -52,7 +52,9 @@ const initialState: LoginFlowState = {
 
 const logger = createLogger('LoginFlowStore');
 
-const _LoginFlowStore = signalStore(
+export type LoginFlowStoreInstanceType = InstanceType<typeof LoginFlowStore>;
+
+export const LoginFlowStore = signalStore(
   withState<LoginFlowState>(initialState),
   withComputed(() => {
     const authStore = inject(AuthStore);
@@ -174,6 +176,3 @@ const _LoginFlowStore = signalStore(
     },
   }),
 );
-
-@Injectable()
-export class LoginFlowStore extends _LoginFlowStore {}

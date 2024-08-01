@@ -1,4 +1,4 @@
-import { Injectable, computed, effect, inject } from '@angular/core';
+import { computed, effect, inject } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { createLogger } from '@app-shared/logger';
 import { User } from '@common';
@@ -13,6 +13,7 @@ import {
   withState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { EMPTY, filter, finalize, pipe, shareReplay, switchMap, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -50,7 +51,9 @@ const initialState: AuthState = {
 
 const logger = createLogger('AuthStore');
 
-const _AuthStore = signalStore(
+export type AuthStoreInstanceType = InstanceType<typeof AuthStore>;
+
+export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState<AuthState>(initialState),
   withComputed((store) => {
@@ -123,13 +126,18 @@ const _AuthStore = signalStore(
   }),
 );
 
-@Injectable({ providedIn: 'root' })
-export class AuthStore extends _AuthStore {
-  readonly waitUntilConnected$ = toObservable(this.status).pipe(
+function helpersFactory(store: AuthStoreInstanceType) {
+  const waitUntilConnected$ = toObservable(store.status).pipe(
     tap((status) => logger.log('waitUntilConnected$ - status =', status)),
     filter((status) => status === 'connected'),
     shareReplay(1),
   );
 
-  readonly user$ = toObservable(this.user);
+  const user$ = toObservable(store.user);
+
+  return {
+    waitUntilConnected$,
+    user$,
+  };
 }
+export const [injectAuthStoreHelpers] = createInjectionToken(helpersFactory, { deps: [AuthStore] });
