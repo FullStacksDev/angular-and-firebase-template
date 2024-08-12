@@ -161,29 +161,30 @@ What you need locally before you start:
 1. Click "Add project" and follow the steps to create a new project.
    - Tip: call your project "{project name} LIVE" to make it stand out in the list of projects.
    - Don't enable Google Analytics.
-1. Once the project is created, let's configure some settings and services:
-   1. Click the cog icon next to "Project Overview" at the top of the left-hand sidebar and select "Project settings".
-      1. Set the "Default GCP resource location" to the location closest to your users. Note that this cannot be changed later so choose wisely.
-      1. Set the "Environment type" to "Production".
-      1. In the "Your apps" section click the icon representing web app ("</>") and give the app a name, like "PWA". You can skip the Firebase Hosting setup for now.
-         - After this app entry is created you'll be shown some config. Ignore this for now as you'll copy the config at the end of this Firebase project set up process (see below).
-   1. To use Firebase Functions you need to be on [a paid plan](https://firebase.google.com/pricing) (as Functions are not supported on the "no-cost" tier). Use the "Upgrade" button at the bottom of the left-hand sidebar (this will need a billing account to be set up).
-      - Note: the base template is already set up to use and deploy functions but does not come with any actual functions out of the box, so it can be used on [the free tier](https://firebase.google.com/pricing) if needed, but only after some modifications — see the relevant "how-to" guide below for removing services like functions etc.
-      - You'll be able to set a budget alert as part of the upgrade process.
-      - IMPORTANT: Firebase won't actually stop charging you if you go over the budget amount, so keep a very close eye on usage and make sure you understand your usage patterns (and the costs associated with them).
-   1. Click "Authentication" in the left-hand menu (under "Build") and enable the "Email/Password" sign-in method together with the "Email link (passwordless sign-in)" option too (on the same page).
-   1. Click "Firestore" (under "Build") in the left-hand menu and create a Firestore database.
-      - Make sure to select a location that matches (or is close to) the "Default GCP resource location" you set earlier.
-      - Start in "production mode".
-      - Note: sometimes, this process fails or the Firestore database is created in "datastore mode" instead of "native mode". If this happens, go to the <https://console.cloud.google.com/> and find that Firestore instance and click on the option to switch to "native mode". (I know, this is annoying, sorry).
-   1. Click "Realtime Database" (under "Build") in the left-hand menu and create a Realtime Database.
-      - Make sure to select a location that matches (or is close to) the "Default GCP resource location" you set earlier.
-      - Start in "locked mode".
-   1. Click "Storage" (under "Build") in the left-hand menu and click on "Get started" and create it.
-      - Start in "production mode".
-   1. Click "Hosting" (under "Build") in the left-hand menu and set up Firebase Hosting.
-      - You can skip the instructions they give as that should all be done already.
-   1. Go back to the "Project settings" and copy the `firebaseConfig` object from the previously registered "PWA" app — you'll need this to continue setting up the app.
+1. Once the project is created, let's configure some settings and services…
+1. Click the cog icon next to "Project Overview" at the top of the left-hand sidebar and select "Project settings". Then set the "Environment type" to "Production" as this will be your live production Firebase environment.
+1. To use Firebase Functions you need to be on [a paid plan](https://firebase.google.com/pricing) (as Functions are not supported on the "no-cost" / free usage tier). Use the "Upgrade" button at the bottom of the left-hand sidebar (this will need a billing account to be set up and will walk you through setting one up if needed).
+   - Note: the base template is already set up to use and deploy functions but does not come with any actual functions out of the box, so it can be used on [the "no cost" / free usage tier](https://firebase.google.com/pricing) if needed, but only after some modifications — see the relevant "how-to" guide below for removing services like functions etc.
+   - You'll be able to set a budget alert as part of the upgrade process. Set this to an amount you're comfortable with.
+     - IMPORTANT: Firebase won't actually stop charging you if you go over the budget amount, so keep a very close eye on usage and make sure you understand your usage patterns (and the costs associated with them).
+1. Click "Authentication" (under "Build") in the left-hand menu and click the button to set up Authentication.
+   - Enable the "Email/Password" sign-in method, and make sure to select the "Email link (passwordless sign-in)" option as part of this set-up.
+1. Click "Firestore" (under "Build") in the left-hand menu and click the button to create a Firestore database.
+   - Keep the default database ID as suggested.
+   - Select the physical location for the database.
+     - IMPORTANT: this location cannot be changed later, and will be used by other Firebase services.
+   - Start in "production mode".
+1. Click "Realtime Database" (under "Build") in the left-hand menu and click the button to create a Realtime Database.
+   - Select the physical location for the database. Note that this may need to be different to the Firestore database location as you have fewer options here.
+   - Start in "locked mode".
+1. Click "Storage" (under "Build") in the left-hand menu and click the button to set it up.
+   - Start in "production mode".
+   - Note: the location is pre-selected to the one you specified for the Firestore database and can't be changed.
+1. Go back to the "Project settings" and register a web app entry and copy the necessary config.
+   - In the "Your apps" section (towards the bottom of the main page of the project settings) click the icon representing web app ("</>") and give the app a name, like "PWA".
+   - Select the "Also set up Firebase Hosting for this app" checkbox.
+   - Copy the `firebaseConfig` object shown in the second step — you'll need this to continue setting up the app.
+   - You can ignore all the other set up instructions (as this is already set up for you in the base template) and finish the set-up.
 
 ### Quick overview to get started
 
@@ -384,7 +385,7 @@ Say your main feature is a "dashboard", here's how you can add this to the app (
 
 ### Configuring the PWA
 
-The base template comes with a basic PWA setup, including a manifest file, service worker, etc. Here's how you can configure this for your app:
+The base template comes with a basic PWA set-up, including a manifest file, service worker, etc. Here's how you can configure this for your app:
 
 - Configure the app name, colors, icons, scope, start URL, etc. in: [`app/src/manifest.webmanifest`](./app/src/manifest.webmanifest).
   - This follows the regular [PWA manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) spec.
