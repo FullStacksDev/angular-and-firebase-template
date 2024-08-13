@@ -1,4 +1,11 @@
 {
   "printWidth": 100,
-  "proseWrap": "never"
+  "overrides": [
+    {
+      "files": ["*.md"],
+      "options": {
+        "proseWrap": "never"
+      }
+    }
+  ]
 }
