@@ -5,6 +5,8 @@ import { MockBuilder, MockInstance, MockRender, ngMocks } from 'ng-mocks';
 import { AuthStatusComponent } from './auth-status.component';
 
 describe('AuthStatusComponent', () => {
+  // See: https://github.com/help-me-mom/ng-mocks/issues/10217
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   MockInstance.scope();
 
   beforeEach(() => MockBuilder(AuthStatusComponent, null).mock(AuthStore).mock(LogoutService));
