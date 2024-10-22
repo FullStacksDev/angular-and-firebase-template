@@ -5,6 +5,8 @@ import { LoginFlowComponent } from './login-flow.component';
 import { LoginFlowStore } from './login-flow.store';
 
 describe('LoginFlowComponent', () => {
+  // See: https://github.com/help-me-mom/ng-mocks/issues/10217
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   MockInstance.scope();
 
   beforeEach(() => MockBuilder(LoginFlowComponent, null).mock(LoginFlowStore));
