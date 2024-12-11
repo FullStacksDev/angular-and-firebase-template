@@ -6,7 +6,6 @@ import { LogoutService } from '@app-shared/auth/data/logout.service';
 
 @Component({
   selector: 'app-auth-status',
-  standalone: true,
   imports: [RouterLink, MatButtonModule],
   template: `
     @if (isAuthenticated()) {

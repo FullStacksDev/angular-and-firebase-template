@@ -64,7 +64,7 @@
               "routesFile": "prerendered-routes.txt"
             },
             "ssr": {
-              "entry": "server.ts"
+              "entry": "src/server.ts"
             }
           },
           "configurations": {
@@ -119,6 +119,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "builderMode": "application",
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",

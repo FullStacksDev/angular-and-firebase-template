@@ -21,22 +21,23 @@
   "main": "functions/lib/index.js",
   "dependencies": {
     "@google-cloud/functions-framework": "^3.4.2",
-    "firebase-admin": "^13.0.0",
-    "firebase-functions": "^6.1.0",
+    "firebase-admin": "^13.0.1",
+    "firebase-functions": "^6.1.2",
     "ufo": "^1.5.4"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^4.0.1",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "firebase-functions-test": "^3.2.0",
-    "firebase-tools": "^13.25.0",
-    "globals": "^15.12.0",
+    "firebase-tools": "^13.28.0",
+    "globals": "^15.13.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.3.3",
-    "typescript": "~5.5.4",
-    "typescript-eslint": "^8.15.0",
-    "vitest": "^2.1.5"
+    "prettier": "^3.4.2",
+    "typescript": "~5.6.0",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^2.1.8"
   },
-  "private": true
+  "private": true,
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
 }

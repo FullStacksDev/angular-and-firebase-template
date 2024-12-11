@@ -5,7 +5,6 @@ import { AuthStatusComponent } from './ui/auth-status.component';
 
 @Component({
   selector: 'app-shell',
-  standalone: true,
   imports: [RouterOutlet, RouterLinkWithHref, MatButtonModule, AuthStatusComponent],
   template: `
     <div class="container mx-auto px-4">

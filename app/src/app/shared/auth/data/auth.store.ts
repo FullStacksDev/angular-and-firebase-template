@@ -10,10 +10,10 @@ import {
   withComputed,
   withHooks,
   withMethods,
+  withProps,
   withState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { EMPTY, filter, finalize, pipe, shareReplay, switchMap, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -117,6 +117,14 @@ export const AuthStore = signalStore(
       ),
     };
   }),
+  withProps((store) => ({
+    waitUntilConnected$: toObservable(store.status).pipe(
+      tap((status) => logger.log('waitUntilConnected$ - status =', status)),
+      filter((status) => status === 'connected'),
+      shareReplay(1),
+    ),
+    user$: toObservable(store.user),
+  })),
   withHooks({
     onInit(store) {
       effect(() => logger.log('State:', getState(store)));
@@ -125,19 +133,3 @@ export const AuthStore = signalStore(
     },
   }),
 );
-
-function helpersFactory(store: AuthStore) {
-  const waitUntilConnected$ = toObservable(store.status).pipe(
-    tap((status) => logger.log('waitUntilConnected$ - status =', status)),
-    filter((status) => status === 'connected'),
-    shareReplay(1),
-  );
-
-  const user$ = toObservable(store.user);
-
-  return {
-    waitUntilConnected$,
-    user$,
-  };
-}
-export const [injectAuthStoreHelpers] = createInjectionToken(helpersFactory, { deps: [AuthStore] });

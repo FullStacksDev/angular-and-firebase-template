@@ -10,7 +10,6 @@ const logger = createLogger('AppComponent');
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, MatSnackBarModule],
   template: ` <router-outlet /> `,
   styles: [],

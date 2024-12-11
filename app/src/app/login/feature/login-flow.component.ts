@@ -8,7 +8,6 @@ import { LoginFlowStore } from './login-flow.store';
 
 @Component({
   selector: 'app-login-flow',
-  standalone: true,
   imports: [RouterLink, MatButtonModule, MatIconModule, MatSnackBarModule, LoginFormComponent],
   providers: [LoginFlowStore],
   template: `

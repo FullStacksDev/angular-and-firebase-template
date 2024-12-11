@@ -1,43 +1,30 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-// Plus imports for other components in your app.
 
-@use "sass:map";
+html {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
-
-// Define the theme object.
-$app-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
     ),
-    density: (
-      scale: 0,
-    ),
-  )
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-:root {
-  @include mat.all-component-themes($app-theme);
-
-  // Custom background and foreground colors
-  --mat-app-background-color: #f3f4f6; // `bg-gray-100` in TailwindCSS
-  --mat-app-text-color: #111827; // `text-gray-900` in TailwindCSS
+    $overrides: (
+      // Custom background and foreground colors
+      // `bg-gray-100` in TailwindCSS
+      surface: #f3f4f6,
+      // `text-gray-900` in TailwindCSS
+      on-surface: #111827
+    )
+  );
 }
-
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-@include mat.typography-hierarchy($app-theme);
 
 @tailwind base;
 @tailwind components;
@@ -57,6 +44,34 @@ body {
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
+}
+
+h1 {
+  font: var(--mat-sys-headline-large);
+}
+
+h2 {
+  font: var(--mat-sys-headline-medium);
+}
+
+h3 {
+  font: var(--mat-sys-headline-small);
+}
+
+h4 {
+  font: var(--mat-sys-title-large);
+}
+
+h5 {
+  font: var(--mat-sys-title-medium);
+}
+
+h6 {
+  font: var(--mat-sys-title-small);
+}
+
+p {
+  font: var(--mat-sys-body-large);
 }
 
 // Need this separate declaration because it's on the <body> element so the #app parent selector won't work.
