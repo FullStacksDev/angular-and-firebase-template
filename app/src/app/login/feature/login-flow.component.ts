@@ -8,7 +8,6 @@ import { LoginFlowStore } from './login-flow.store';
 
 @Component({
   selector: 'app-login-flow',
-  standalone: true,
   imports: [RouterLink, MatButtonModule, MatIconModule, MatSnackBarModule, LoginFormComponent],
   providers: [LoginFlowStore],
   template: `
@@ -20,7 +19,7 @@ import { LoginFlowStore } from './login-flow.store';
     </div>
     <div class="mt-6 w-[360px]">
       @if (status() === 'error') {
-        <div class="my-2 rounded bg-red-100 px-3 py-2 text-center text-sm text-red-700">
+        <div class="my-2 rounded-sm bg-red-100 px-3 py-2 text-center text-sm text-red-700">
           {{ error() }}
         </div>
       }

@@ -14,14 +14,11 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": ["ES2022", "dom"],
     "paths": {
       "@app-shared/*": ["./src/app/shared/*"],
       "@common": ["../firebase/common/index"]
@@ -36,6 +33,8 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
+    "strictOutputEventTypes": true,
+    "strictStandalone": true,
     "strictTemplates": true
   }
 }

@@ -3,7 +3,6 @@ import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 import { LoginFormComponent } from './login-form.component';
 
 @Component({
-  standalone: true,
   imports: [LoginFormComponent],
   template: `<app-login-form [processing]="processing" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,4 @@
-import { effect, inject } from '@angular/core';
+import { effect, inject, untracked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStore } from '@app-shared/auth/data/auth.store';
 import { createLogger } from '@app-shared/logger';
@@ -165,14 +165,14 @@ export const LoginFlowStore = signalStore(
       effect(() => logger.log('State:', getState(store)));
 
       // Listen for changes to the user and trigger completion once we have one.
-      effect(
-        () => {
-          if (store.user()) {
+      effect(() => {
+        const user = store.user();
+        if (user) {
+          untracked(() => {
             void store.completeLogin();
-          }
-        },
-        { allowSignalWrites: true },
-      );
+          });
+        }
+      });
     },
   }),
 );

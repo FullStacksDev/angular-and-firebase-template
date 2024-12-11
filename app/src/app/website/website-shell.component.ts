@@ -5,13 +5,12 @@ import { AuthStatusComponent } from './ui/auth-status.component';
 
 @Component({
   selector: 'app-shell',
-  standalone: true,
   imports: [RouterOutlet, RouterLinkWithHref, MatButtonModule, AuthStatusComponent],
   template: `
     <div class="container mx-auto px-4">
       <header>
         <nav class="flex justify-between border-b py-2">
-          <ul class="flex space-x-4">
+          <ul class="flex gap-x-4">
             <li>
               <a mat-button [routerLink]="['/']">Home</a>
             </li>
@@ -20,7 +19,7 @@ import { AuthStatusComponent } from './ui/auth-status.component';
             </li>
           </ul>
 
-          <ul class="flex space-x-4">
+          <ul class="flex gap-x-4">
             @defer {
               <li class="float-right">
                 <app-auth-status />

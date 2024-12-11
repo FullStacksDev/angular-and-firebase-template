@@ -27,7 +27,7 @@ This template gives you an empty app skeleton, working end-to-end, with the foll
 - Login flow using [Firebase Auth's Email Link](https://firebase.google.com/docs/auth/web/email-link-auth).
 - Angular Material and Tailwind CSS, with styling overrides to make them work well together.
 - Helpers to inject Firebase services into Angular components, services, etc.
-- [RxFire](https://github.com/FirebaseExtended/rxfire) used for Observable wrappers for Firebase access in the frontend.
+- [RxFire](https://github.com/FirebaseExtended/rxfire) for Observable wrappers for Firebase access in the frontend.
 - Frontend logging using [consola](https://github.com/unjs/consola).
 - VS Code, ESLint, Prettier, etc. all set up for a consistent and clean development experience.
 - Continuous integration (CI) set up with GitHub Actions (for linting, tests and builds).
@@ -44,12 +44,12 @@ For more details see the [Architecture and design decisions](./ARCHITECTURE.md) 
 > Basic familiarity with the technologies and services listed is required to make the best of this tech stack and template.
 
 - [Node.js](https://nodejs.org/en/) v20.x
-- [TypeScript](https://www.typescriptlang.org/) v5.5
-- [Angular](https://angular.dev/) v18.1
-- [Angular Material](https://material.angular.io/) v18.1
-- [Tailwind CSS](https://tailwindcss.com/) v3.4
-- [NgRx Signals](https://ngrx.io/guide/signals) v18.0
-- [RxFire](https://github.com/FirebaseExtended/rxfire)
+- [TypeScript](https://www.typescriptlang.org/) v5.7
+- [Angular](https://angular.dev/) v19.1
+- [Angular Material](https://material.angular.io/) v19.1
+- [Tailwind CSS](https://tailwindcss.com/) v4.0
+- [NgRx Signals](https://ngrx.io/guide/signals) v19.0
+- [RxFire](https://github.com/FirebaseExtended/rxfire) v6.1
 - [Firebase](https://firebase.google.com/)
   - [Hosting](https://firebase.google.com/products/hosting)
   - [Authentication](https://firebase.google.com/products/auth)
@@ -63,7 +63,7 @@ For more details see the [Architecture and design decisions](./ARCHITECTURE.md) 
 - [Git](https://git-scm.com/) for version control.
 - [GitHub](https://github.com/) for hosting the code and running the CI pipeline.
 - [VS Code](https://code.visualstudio.com/) as the main editor.
-- [pnpm](https://pnpm.io/) as the package manager and script runner.
+- [pnpm](https://pnpm.io/) v10 as the package manager and script runner.
 - [Angular CLI](https://angular.io/cli)
 - [Firebase CLI](https://firebase.google.com/docs/cli)
 - [Firebase Emulator Suite](https://firebase.google.com/docs/emulator-suite) for local Firebase services.
