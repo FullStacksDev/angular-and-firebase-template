@@ -72,7 +72,7 @@ This isolation is important as Firebase Functions currently deploy ALL dependenc
 >
 > This does mean you have to manage, install and update dependencies separately, for each subfolder.
 
-A VS Code workspace config is provided to work on both at the same time, in a single VS Code window. The workspace also provides settings and recommended extensions that will help your development experience.
+A VS Code workspace config is provided to work on both subfolders at the same time, in a single VS Code window. The workspace also provides settings and recommended extensions that will help your development experience.
 
 > [!TIP]
 >
@@ -90,7 +90,7 @@ The `firebase/common` folder is the place for this shared common code. We recomm
 
 > [!WARNING]
 >
-> It's highly recommended to only put types, interfaces and very simple utility functions here, and to not rely on any external libraries. Where you do want to rely on an external library (e.g. [type-fest](https://github.com/sindresorhus/type-fest/)) make sure the library is added to both the `app` and `firebase` `package.json` files.
+> It's highly recommended to only put types, interfaces and very simple utility functions here, and to not rely on any external libraries. Where you do want to rely on an external library (e.g. [type-fest](https://github.com/sindresorhus/type-fest/)) make sure the library is added to both the `app` and `firebase` `package.json` files as well.
 
 > [!TIP]
 >
@@ -118,7 +118,7 @@ All data in the emulators is persisted to the `firebase/local` folder (on shutdo
 
 | **:brain: Design decision** |
 | :-- |
-| Beyond local development, this base template assumes only one live Firebase project / environment (which you set up), as specified in the [`firebase/.firebaserc`](./firebase/.firebaserc) file.<br><br>We believe this is a good simple set-up to get you started, and for the first phase of your project (going from 0 to 1), after which you can always add intermediate environments for testing and less risky deploys / rollouts |
+| Beyond local development, this base template assumes only one live Firebase project / environment (which you set up), as specified in the [`firebase/.firebaserc`](./firebase/.firebaserc) file.<br><br>We believe this is a good simple set-up to get you started, and for the first phase of your project (going from 0 to 1), after which you can always add a intermediate environment (aka 'staging') for testing and less risky deploys / rollouts |
 
 This live project is your **production** environment — what your users will access, and where all your real data will live.
 
@@ -162,7 +162,7 @@ The [`./deploy`](./deploy) script in the root of the project is a simple script 
 
 | **:brain: Design decision** |
 | :-- |
-| We don't use [Angular modules (i.e. `@Module`)](https://angular.dev/guide/ngmodules) for our own code — we've chosen to go all-in on [Angular's recent **standalone** approach](https://angular.dev/guide/components/importing#standalone-components). So we only ever define (and prefer to import) standalone components, directives, etc.<br><br> The base template has configured the Angular CLI generator to always set the `standalone: true` flag on any components, directives, etc. you generate. |
+| As of Angular v19, 'standalone' components, pipes and directives are the default (and thus no need for NgModules). We have also enabled the Angular-specific TypeScript flag `strictStandalone` to guard against the use of non-standalone bits. |
 
 | **:brain: Design decision** |
 | :-- |
@@ -222,7 +222,7 @@ We'll refer to these in the rest of the document.
 
 > [!NOTE]
 >
-> There are some files at the root of the `/app` folder (not shown in the listing above) which we'll touch on in later sections. These include: `angular.json`, `prerendered-routes.txt`, `ngsw-config.json` and `tailwind.config.js`.
+> There are some files at the root of the `/app` folder (not shown in the listing above) which we'll touch on in later sections. These include: `angular.json`, `prerendered-routes.txt`, and `ngsw-config.json`.
 
 | **:brain: Design decision** |
 | :-- |
@@ -240,7 +240,7 @@ We'll refer to these in the rest of the document.
 
 The `data` folder is for (most) state management and data access services. Page and smart components go in the `feature` folder, whilst presentational components go in the `ui`folder. And the `util` folder is for standalone utilities.
 
-This is a recommended folder structure based on [Nx's suggested library types](https://nx.dev/concepts/more-concepts/library-types).
+This is a recommended folder structure based on [Nx's suggested library types](https://nx.dev/concepts/decisions/project-dependency-rules).
 
 For features within the `shared` folder you should follow the same structure, except you probably won't need a `feature` subfolder within each shared feature since these are shared bits of code for use elsewhere.
 
@@ -321,25 +321,21 @@ Whilst on the topic of Firebase Hosting, we also set up some caching headers in 
 
 The core of a PWA config is the [`manifest.webmanifest`](./app/src/manifest.webmanifest) file, which defines the app's name, icons, colors, etc. This is used by the browser to provide a more "app-like" experience when the user adds the app to their home screen / app launcher (depending on device capabilities). This file follows the regular [PWA manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) spec. **You'll need to customize this file to specify your app's name and branding.**
 
-For the Angular service worker, the [`app/ngsw-config.json`](./app/ngsw-config.json) file is the main configuration, determining how to cache assets, handle updates, etc ([docs](https://angular.io/guide/service-worker-config)).
+For the Angular service worker, the [`app/ngsw-config.json`](./app/ngsw-config.json) file is the main configuration, determining how to cache assets, handle updates, etc ([docs](https://angular.dev/ecosystem/service-workers/config)).
 
 The [`app/src/app/app.component.ts`](./app/src/app/app.component.ts) file contains the logic for the in-app update notification, which checks for updates to the app and prompts the user to reload when a new version is available.
 
 > [!NOTE]
 >
-> Technically, a new "version" of an app is just a new build of assets, as defined by the `assetGroups` in the `ngsw-config.json` file. The service worker will automatically download (and cache) these new assets in the background and the trigger the in-app update notification.
+> Technically, a new "version" of an app is just a new build of assets, as defined by the `assetGroups` in the `ngsw-config.json` file. The service worker will automatically download (and cache) these new assets in the background and the trigger the in-app update notification. We also use set `"applicationMaxAge": "30d"` to force the service worker to refetch assets every 30 days, just in case.
 
 ## [`app`] UI components and styling using Angular Material and Tailwind CSS
 
 | **:brain: Design decision** |
 | :-- |
-| We use [Angular Material](https://material.angular.io/) (with Material 3) for UI components, and [Tailwind CSS](https://tailwindcss.com/) for styling. You can still create your own UI components or add in other libraries, if needed. You can also customize Tailwind CSS as you wish, by updating the [`app/tailwind.config.js`](./app/tailwind.config.js) config file. |
+| We use [Angular Material](https://material.angular.io/) (with Material 3) for UI components, and [Tailwind CSS](https://tailwindcss.com/) for styling. You can still create your own UI components or add in other libraries, if needed. You can also customize Tailwind CSS as you wish, using v4's [CSS-first configuration](https://tailwindcss.com/blog/tailwindcss-v4#css-first-configuration). |
 
-The [`app/src/styles.scss`](./app/src/styles.scss) file sets up both Angular Material (with a basic Material 3 theme with custom background and text colors) and Tailwind CSS styling. Here, we also provide styling overrides to make Angular Material work okay with the Tailwind CSS base styles.
-
-> [!NOTE]
->
-> We scope all Tailwind CSS and custom styles within the `#app` selector — we apply the `app` ID on the `<body>` element in the [`app/src/index.html`](./app/src/index.html) file and configure `tailwind.config.js` to place all Tailwind-specific styles within the `#app` selector, acting as a "namespace". When adding styles to the `styles.scss` file make sure to add them within the `#app` selector (already defined) to stick to this namespaced approach. This will hopefully allow for better overrides as you will have more specificity in your custom styles.
+The [`app/src/styles.scss`](./app/src/styles.scss) file sets up both Angular Material (with a basic Material 3 theme with custom background and text colors) and Tailwind CSS styling. Styles are provided for headings and paragraphs (`h1`-`h6` and `p` tags) as Angular Material no longer provides these out of the box. We also provide styling overrides to make Angular Material work okay with the Tailwind CSS base styles.
 
 You can import and use Angular Material components within your components as usual (see the [docs](https://material.angular.io/)). And you can use Tailwind CSS classes in your HTML and SCSS files as you wish (see the [docs](https://tailwindcss.com/docs)).
 
@@ -387,7 +383,7 @@ These return the underlying Firebase service instances provided by the Firebase 
 
 A critical component of any app that provides user-specific capabilities is authentication. The base template comes with an auth store, auth guard, login page, passwordless login flow and logout flow out of the box.
 
-To use the auth store: inject the global `AuthStore` service into your component, service, directive, etc. using `inject(AuthStore)`. You then have access to the state of the auth store. Note that this auth store automatically connects to Firebase Authentication and listens for changes, when your app starts up.
+To use the auth store: inject the global `AuthStore` service into your component, service, directive, etc. using `inject(AuthStore)`. You then have access to the state of the auth store. Note that this auth store automatically connects to Firebase Authentication and listens for changes when your app starts up.
 
 To use the auth guard:
 

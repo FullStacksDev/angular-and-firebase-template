@@ -4,7 +4,6 @@ import { LoginFlowComponent } from './login-flow.component';
 
 @Component({
   selector: 'app-login-page',
-  standalone: true,
   template: `
     @defer {
       <section class="flex justify-center py-6">

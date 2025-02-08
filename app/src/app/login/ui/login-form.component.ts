@@ -8,7 +8,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-login-form',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -47,7 +46,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         </mat-card-footer>
       </mat-card>
 
-      <div class="text mt-6 rounded bg-blue-100 px-3 py-2 text-center text-blue-700">
+      <div class="text mt-6 rounded-sm bg-blue-100 px-3 py-2 text-center text-blue-700">
         We'll send you an email with a link to log in
         <br />
         (and automatically create a new account if needed)

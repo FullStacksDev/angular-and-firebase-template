@@ -1,1 +1,9 @@
 pnpm-lock.yaml
+
+local
+common/**/*.js
+common/**/*.js.map
+common/**/*.d.ts
+functions/**/*.js
+functions/**/*.js.map
+functions/**/*.d.ts
