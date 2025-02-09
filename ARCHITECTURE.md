@@ -333,11 +333,34 @@ The [`app/src/app/app.component.ts`](./app/src/app/app.component.ts) file contai
 
 | **:brain: Design decision** |
 | :-- |
-| We use [Angular Material](https://material.angular.io/) (with Material 3) for UI components, and [Tailwind CSS](https://tailwindcss.com/) for styling. You can still create your own UI components or add in other libraries, if needed. You can also customize Tailwind CSS as you wish, using v4's [CSS-first configuration](https://tailwindcss.com/blog/tailwindcss-v4#css-first-configuration). |
+| We use [Angular Material](https://material.angular.io/) (with Material 3) and [Tailwind CSS](https://tailwindcss.com/) for styling. We split the styling set-up into separate files so they are processed separately, so Tailwind doesn't clash with the Sass (SCSS) processing for Angular Material.<br><br>You can still create your own UI components or add in other libraries, if needed. You can also customize Tailwind CSS as you wish, using v4's [CSS-first configuration](https://tailwindcss.com/blog/tailwindcss-v4#css-first-configuration). |
 
-The [`app/src/styles.scss`](./app/src/styles.scss) file sets up both Angular Material (with a basic Material 3 theme with custom background and text colors) and Tailwind CSS styling. Styles are provided for headings and paragraphs (`h1`-`h6` and `p` tags) as Angular Material no longer provides these out of the box. We also provide styling overrides to make Angular Material work okay with the Tailwind CSS base styles.
+The split set-up consists of:
+
+- The [`app/src/styles.scss`](./app/src/styles.scss) file — the entrypoint for all styles, which imports our `tailwind.css` file (more below) and sets up Angular Material with a basic Material 3 theme with custom background and foreground colors.
+  - This is where you customize Angular Material to your liking.
+  - Here, we also provide default styles for headings and paragraphs (`h1`-`h6` and `p` tags) as Angular Material no longer provides these out of the box.
+  - We also provide styling overrides to make Angular Material work well with the Tailwind CSS base styles.
+- The [`app/src/tailwind.css`](./app/src/tailwind.css) file — everything needed for the Tailwind CSS set up.
+  - This is where you customize Tailwind CSS to your liking.
+  - This is also where you put all custom styling that builds on top of Tailwind CSS (e.g. using `@apply`).
+  - Here, we've set up the Tailwind utilities to be marked as `!important`. This is so we can easily use them in our templates to override all other styling (as that's usually the purpose of using utility classes in templates). In particular, so they can override Angular Material component styles, when needed (see note below).
 
 You can import and use Angular Material components within your components as usual (see the [docs](https://material.angular.io/)). And you can use Tailwind CSS classes in your HTML and SCSS files as you wish (see the [docs](https://tailwindcss.com/docs)).
+
+Typically, you'll want to put your custom global classes and styles in the `tailwind.css` file as you'll likely want to use Tailwind capabilities (like `@apply`) to build up your styles. Note that you can still refer to Angular Material's CSS variables in your Tailwind CSS styles.
+
+> [!NOTE]
+>
+> We have this split set-up in place because [Tailwind does not work well with preprocessors like Sass](https://tailwindcss.com/docs/compatibility#sass-less-and-stylus).
+
+> [!NOTE]
+>
+> We use the trick of marking _all_ Tailwind utilities as `!important` because of the way Angular Material emits the styling for components — it puts the styles in the `<head>` of the page in `<style>` blocks, and there's no way to tell it to put them within a CSS cascade layer (which would've been the better way to do this).<br><br>This is not an ideal set-up; there's an open issue on the Angular Material repo to maybe support CSS cascade layers in the future: <https://github.com/angular/components/issues/26451>, which would make this workaround unnecessary.
+
+> [!IMPORTANT]
+>
+> Because we want all Tailwind utilities to be marked up with `!important`, when defining your own [custom utilities (using Tailwind’s `@utility` directive)](https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities) make sure to add `!important` to your rules too. This is annoying, unfortunately, but it's the only way to ensure your custom utilities always take priority just like how the default Tailwind utilities have been set up.
 
 ## [`app`] State management using NgRx Signals
 

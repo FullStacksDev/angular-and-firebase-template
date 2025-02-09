@@ -25,7 +25,7 @@ This template gives you an empty app skeleton, working end-to-end, with the foll
 - State management using NgRx Signals.
 - Global auth store and auth guard.
 - Login flow using [Firebase Auth's Email Link](https://firebase.google.com/docs/auth/web/email-link-auth).
-- Angular Material and Tailwind CSS, with styling overrides to make them work well together.
+- Angular Material and Tailwind CSS, with a split set-up, higher priority utilities, and styling overrides to make them work well together.
 - Helpers to inject Firebase services into Angular components, services, etc.
 - [RxFire](https://github.com/FirebaseExtended/rxfire) for Observable wrappers for Firebase access in the frontend.
 - Frontend logging using [consola](https://github.com/unjs/consola).

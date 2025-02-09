@@ -24,6 +24,9 @@
     "editor.linkedEditing": true,
     "eslint.validate": ["javascript", "typescript", "html"],
     "editor.wordWrap": "on",
+    "files.associations": {
+      "*.css": "tailwindcss"
+    },
     "files.exclude": {
       "**/.git": true,
       "**/.DS_Store": true
