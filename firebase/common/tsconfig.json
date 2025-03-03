@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "erasableSyntaxOnly": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
