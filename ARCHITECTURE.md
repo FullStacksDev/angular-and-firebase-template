@@ -1,12 +1,10 @@
 # Architecture and design decisions
 
-This document covers the overall architecture and design decisions made for this base template, and the associated [FullStacksDev](https://FullStacks.dev) Angular and Firebase tech stack.
+This document covers the overall architecture and design decisions made for this base template, and the associated [FullStacksDev](https://fullstacks.dev/) Angular and Firebase tech stack.
 
 > [!NOTE]
 >
 > Feel free to deviate from these as you wish. The base template is designed to be fairly flexible so you can adapt it to your needs. Though note that deviations may require more tinkering to get everything to work well together.
->
-> If you're keen on the full _curated tech stack_ experience — where we build on top of this base template with more opinionated patterns, practices and approaches — then check out the [example apps](https://fullstacks.dev/stacks/angular-and-firebase).
 
 > [!TIP]
 >
@@ -124,10 +122,6 @@ This live project is your **production** environment — what your users will ac
 
 The deploy script will deploy to this live project (details below).
 
-> [!TIP]
->
-> In the patterns example app (coming soon) we show you how to set up an intermediate staging environment, together with continuous deployment (CD), which requires a bit more set-up and configuration.
-
 ## How the deploy works
 
 | **:brain: Design decision**                                                        |
@@ -148,7 +142,7 @@ The [`./deploy`](./deploy) script in the root of the project is a simple script 
 >
 > This is designed to be run locally only (not as part of a CI/CD pipeline) as it benefits from your locally authenticated `firebase` CLI.
 >
-> For CI/CD you'd want to update the GitHub Actions pipeline to deploy to Firebase, which would involve setting up a service account and securely storing the credentials in GitHub Secrets so that the pipeline can authenticate with Firebase. We show you how to do this in the patterns example app (coming soon).
+> For Continuous Deployment (CD) you'll want to update the GitHub Actions pipeline to deploy to Firebase, which would involve setting up a service account and securely storing the credentials in GitHub Secrets so that the pipeline can authenticate with Firebase. And also modifying the deploy script to make it non-interactive (or add a non-interactive mode via a flag).
 
 > [!IMPORTANT]
 >
@@ -244,7 +238,7 @@ This is a recommended folder structure based on [Nx's suggested library types](h
 
 For features within the `shared` folder you should follow the same structure, except you probably won't need a `feature` subfolder within each shared feature since these are shared bits of code for use elsewhere.
 
-As things grow you may need to adapt and tweak this structure (e.g. to add another level in the hierarchy) — we show you how to tackle this in the patterns example app (coming soon).
+As things grow you may need to adapt and tweak this structure (e.g. to add another level in the hierarchy).
 
 ## [`app`] Static prerendered pages and dynamic pages only
 
@@ -374,7 +368,7 @@ State management is a bit of a hot topic in the Angular community, and there are
 >
 > The [NgRx docs](https://ngrx.io/guide/store/why) do a fantastic job of explaining why you would want to use a library like NgRx to manage state. The linked page covers the older (but still relevant) NgRx Store, but the principles are still applicable to SignalStore. Note that SignalStore is more lightweight and does not follow the Redux pattern, making it a bit simpler to use.
 
-The base template uses SignalStore for the provided global auth store as well as the component-specific login flow store. We cover stores (and state management) in more detail in the [example apps](TODO).
+The base template uses SignalStore for the provided global auth store as well as the component-specific login flow store.
 
 ## [`app`] Accessing Firebase services from the Angular app
 
@@ -460,10 +454,6 @@ We encourage use of [ng-mocks](https://ng-mocks.sudo.eu/) to simplify a lot of t
 
 Most of the components, services, etc. provided in the base template have corresponding test suites.
 
-> [!TIP]
->
-> We cover testing in more detail in the [example apps](TODO).
-
 ## [`app`] Linting using ESLint and formatting using Prettier
 
 | **:brain: Design decision** |
@@ -521,10 +511,6 @@ We do recommend splitting out the actual functions into separate files within th
 >
 > Make sure you go through the [Firebase Functions docs](https://firebase.google.com/docs/functions) to understand how to write functions and what you can do with them. Also make sure you understand the costs and operational model of Firebase Functions.
 
-> [!TIP]
->
-> We make use of Firebase Functions extensively in the patterns example app (coming soon).
-
 ## [`firebase`] Security rules
 
 The base template comes with all security rules — for Firestore, Realtime Database and Storage — set to block all access by default. This is the most secure setting. As you build out your app you'll need to update these rules to allow the necessary access.
@@ -557,10 +543,6 @@ See the files within the [`firebase/test`](./firebase/test/) folder for the secu
 >
 > You can add any additional tests you want in this folder — Vitest will pick these up as long as they contain ".test." or ".spec." in their filename.
 
-> [!TIP]
->
-> We cover more Firebase testing, such as functions testing and integration testing, in the patterns example app (coming soon).
-
 ## [`firebase`] Linting using ESLint and formatting using Prettier
 
 | **:brain: Design decision** |
@@ -586,5 +568,3 @@ Use the [Firebase Console](https://console.firebase.google.com/) to manage and m
 > [!CAUTION]
 >
 > Firebase currently doesn't have a way to set a hard limit on costs, so you need to be vigilant about monitoring your usage and costs, and how you build features to make sure of Firebase services. Ultimately, you are responsible for the costs incurred by your use of services like Firebase.
->
-> We cover some strategies for managing costs in the patterns example app (coming soon).

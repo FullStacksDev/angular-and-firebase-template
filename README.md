@@ -1,14 +1,10 @@
-# The [FullStacksDev](https://fullstacks.dev) Angular and Firebase base template
+# The [FullStacksDev](https://fullstacks.dev/) Angular and Firebase base template
 
 Part of the curated [**FullStacksDev Angular and Firebase tech stack**](https://fullstacks.dev/#angular-and-firebase). For solo devs and very small teams.
 
 An opinionated full-stack starting point for building a web app, using Angular and Firebase. Aiming to be lean and useful enough so you can hit the ground running and focus on stuff that matters. With enough room for you to extend as you need.
 
 You are free to use and customize this template as you want — build a prototype, an internal tool, a side project, or the next big thing.
-
-> [!IMPORTANT]
->
-> This is currently in **beta**. We're actively working on it and will be making regular updates — expect big changes and improvements until it gets to a stable release. Feel free to give your feedback and suggestions via the Issues tab.
 
 ## Features
 
@@ -280,7 +276,7 @@ Make sure to do all this in a branch, test locally and push to GitHub, then open
 
 > [!IMPORTANT]
 >
-> This is like any other dependency update process and can sometimes require changes to your code. Especially with major version updates with breaking changes. We aim to keep the base template up-to-date with the latest versions of dependencies, and if these result in changes to the code we make a new release of the base template with specific instructions on what to do. See the next section for more on this.
+> This is like any other dependency update process and can sometimes require changes to your code. Especially with major version updates with breaking changes. We aim to keep the base template up-to-date with the latest versions of dependencies, and if these result in changes to the code we make a new release of the base template with best-effort instructions on what to do. See the next section for more on this.
 
 > [!TIP]
 >
@@ -298,7 +294,7 @@ Make sure to do all this in a branch, test locally and push to GitHub, then open
 >
 > Also, we won't usually make releases for simple dependency updates, or content changes.
 
-Whenever we make a new release of the base template we will provide detailed release notes with specific instructions on what to do to update your app. These will contain specific code changes you can make (some may be optional), and it will all depend on how much you have deviated from the base template, and what is relevant to your app.
+Whenever we make a new release of the base template we will provide release notes with best-effort instructions on what to do to update your app. These may contain specific code changes you can make (some may be optional), and it will all depend on how much you have deviated from the base template, and what is relevant to your app.
 
 > [!IMPORTANT]
 >
@@ -313,10 +309,6 @@ Go to the [releases page](https://github.com/FullStacksDev/angular-and-firebase-
 We document the architecture and design decisions in [a separate doc](ARCHITECTURE.md).
 
 Feel free to deviate from these as you wish. The base template is designed to be fairly flexible so you can adapt it to your needs.
-
-> [!TIP]
->
-> If you want to get the full "curated tech stack" experience check out the example apps for this tech stack (more info at the end of this doc).
 
 ## How-to guides
 
@@ -464,20 +456,9 @@ Some email templates (e.g. for Authentication) are customizable in the [Firebase
 
 ## How we decide what goes into the base template
 
-It's important that the base template is as lean and broadly useful as possible, whilst maintaining the opinionated approach to the tech stack, architecture and patterns that we are developing as part of the _curated tech stacks_ approach in [FullStacksDev](https://fullstacks.dev).
+It's important that the base template is as lean and broadly useful as possible, whilst maintaining the opinionated approach to the tech stack, architecture and patterns that we are developing as part of the _curated tech stacks_ approach in [FullStacksDev](https://fullstacks.dev/).
 
-For this reason, we carefully consider what goes into the base template and err on the side of caution. New capabilities are only added to the base template when they are proven to be broadly useful and fit within the tech stack, by first applying them to real-world projects and the example apps.
-
-## What next? Check out the example apps for this tech stack…
-
-If you want to continue learning more about the [FullStacksDev Angular and Firebase tech stack](https://fullstacks.dev/stacks/angular-and-firebase) you can check out the premium example apps built using this template (requires a premium upgrade):
-
-- [Simple example app](https://github.com/FullStacksDev/angular-and-firebase-simple-example-app)
-- Patterns example app (coming soon)
-
-These apps showcase the capabilities of the tech stack and give you an opinionated, pragmatic and in-depth learning experience. Each come with comprehensive documentation and learning content covering patterns, architecture decisions, design decisions, data models, tech stack capabilities, learnings and more.
-
-You can read more about the [purpose and specs of the example apps](https://fullstacks.dev/example-apps-and-patterns).
+For this reason, we carefully consider what goes into the base template and err on the side of caution. New capabilities are only added to the base template when they are proven to be broadly useful and fit within the tech stack, by first applying them to real-world projects.
 
 ## License
 
