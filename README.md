@@ -290,9 +290,7 @@ Make sure to do all this in a branch, test locally and push to GitHub, then open
 
 > [!NOTE]
 >
-> Once the base template is out of **beta** and released in a stable version, there are unlikely to be _frequent_ changes, so hopefully you won't need to do this often.
->
-> Also, we won't usually make releases for simple dependency updates, or content changes.
+> We won't usually make releases for simple dependency updates, or content changes.
 
 Whenever we make a new release of the base template we will provide release notes with best-effort instructions on what to do to update your app. These may contain specific code changes you can make (some may be optional), and it will all depend on how much you have deviated from the base template, and what is relevant to your app.
 
