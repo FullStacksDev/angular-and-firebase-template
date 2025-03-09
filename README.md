@@ -6,6 +6,10 @@ An opinionated full-stack starting point for building a web app, using Angular a
 
 You are free to use and customize this template as you want — build a prototype, an internal tool, a side project, or the next big thing.
 
+> [!TIP]
+>
+> To see this template in action, and learn more about Angular and Firebase, check out the free [simple example app](https://github.com/FullStacksDev/angular-and-firebase-simple-example-app) with its comprehensive learning content.
+
 ## Features
 
 This template gives you an empty app skeleton, working end-to-end, with the following included:
