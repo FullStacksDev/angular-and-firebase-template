@@ -464,8 +464,16 @@ For this reason, we carefully consider what goes into the base template and err 
 
 ## License
 
-This template is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
-
 > [!IMPORTANT]
 >
-> This template is provided "as is" and with no warranty nor liability. Please make sure you keep a close eye on any costs incurred as you'll be liable for these and anything else that arises from using this template. We recommend you review the code and architecture carefully, adapt it to your needs and thoroughly test your solutions out, before deploying to a live project, paying close attention to [Firebase's pricing model](https://firebase.google.com/pricing).
+> This template and all content is provided "as is" and with no warranty nor liability. Please make sure you keep a close eye on any costs incurred as you'll be liable for these and anything else that arises from using this template. We recommend you review the code and architecture carefully, adapt it to your needs and thoroughly test your solutions out, before deploying to a live project, paying close attention to [Firebase's pricing model](https://firebase.google.com/pricing).
+
+### Code
+
+All code here is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+
+### Content
+
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">All content (like this README, the ARCHITECTURE doc, etc.) is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+
+©️ 2025 [FullStacksDev / TidyBrains Ltd.](https://fullstacks.dev/)
