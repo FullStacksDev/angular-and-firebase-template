@@ -17,7 +17,7 @@
     "node": "20",
     "pnpm": "10"
   },
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.6.5",
   "private": true,
   "dependencies": {
     "@angular/cdk": "19.2.4",
