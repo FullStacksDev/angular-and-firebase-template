@@ -25,6 +25,8 @@
         on-surface: var(--color-slate-900)
       )
     );
+
+    @include mat.system-classes();
   }
 
   // Uncomment this out to help debug

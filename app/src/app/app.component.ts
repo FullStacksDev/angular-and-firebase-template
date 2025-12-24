@@ -15,11 +15,12 @@ const logger = createLogger('AppComponent');
   styles: [],
 })
 export class AppComponent {
+  readonly #swUpdate = inject(SwUpdate);
   readonly #runtimeService = inject(RuntimeService);
   readonly #snackBar = inject(MatSnackBar);
 
-  constructor(swUpdate: SwUpdate) {
-    swUpdate.versionUpdates
+  constructor() {
+    this.#swUpdate.versionUpdates
       .pipe(filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'))
       .subscribe(() => {
         this.informUserOfUpdate();

@@ -36,7 +36,7 @@ export function authGuard(allowOnly: 'authed' | 'not-authed'): CanMatchFn {
             return isAuthenticated
               ? true
               : router.createUrlTree(['/login'], {
-                  queryParams: { return: router.getCurrentNavigation()?.extractedUrl.toString() },
+                  queryParams: { return: router.currentNavigation()?.extractedUrl.toString() },
                 });
           case 'not-authed':
             return isAuthenticated ? router.createUrlTree(['/']) : true;

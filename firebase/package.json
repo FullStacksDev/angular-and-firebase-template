@@ -15,29 +15,29 @@
     "deploy:live": "firebase deploy -P live"
   },
   "engines": {
-    "node": "20",
+    "node": "24",
     "pnpm": "10"
   },
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.26.2",
   "main": "functions/lib/index.js",
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.4.6",
-    "firebase-admin": "^13.2.0",
-    "firebase-functions": "^6.3.2",
-    "ufo": "^1.5.4"
+    "@google-cloud/functions-framework": "^5.0.1",
+    "firebase-admin": "^13.6.1",
+    "firebase-functions": "^7.0.5",
+    "ufo": "^1.6.3"
   },
   "devDependencies": {
-    "@firebase/rules-unit-testing": "^4.0.1",
-    "eslint": "^9.22.0",
-    "eslint-config-prettier": "^10.1.1",
+    "@firebase/rules-unit-testing": "^5.0.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
     "firebase-functions-test": "^3.4.1",
-    "firebase-tools": "^13.34.0",
-    "globals": "^16.0.0",
+    "firebase-tools": "^15.5.1",
+    "globals": "^17.3.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.5.3",
-    "typescript": "~5.8.2",
-    "typescript-eslint": "^8.26.1",
-    "vitest": "^3.0.9"
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.55.0",
+    "vitest": "^4.0.18"
   },
   "private": true,
   "pnpm": {
@@ -45,7 +45,8 @@
       "@firebase/util",
       "esbuild",
       "protobufjs",
-      "re2"
+      "re2",
+      "unrs-resolver"
     ]
   }
 }

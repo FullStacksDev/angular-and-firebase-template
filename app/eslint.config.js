@@ -15,7 +15,7 @@ module.exports = tseslint.config(
       ...angular.configs.tsRecommended,
       eslintConfigPrettier,
       ...ngrx.configs.operators,
-      ...ngrx.configs.signals,
+      ...ngrx.configs.signalsTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
