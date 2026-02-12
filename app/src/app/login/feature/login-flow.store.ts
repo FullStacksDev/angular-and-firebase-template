@@ -1,4 +1,4 @@
-import { effect, inject, untracked } from '@angular/core';
+import { computed, effect, inject, untracked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStore } from '@app-shared/auth/data/auth.store';
 import { createLogger } from '@app-shared/logger';
@@ -55,12 +55,14 @@ const logger = createLogger('LoginFlowStore');
 export type LoginFlowStore = InstanceType<typeof LoginFlowStore>;
 
 export const LoginFlowStore = signalStore(
-  withState<LoginFlowState>(initialState),
-  withComputed(() => {
+  withState<{ state: LoginFlowState }>({ state: initialState }),
+  withComputed((store) => {
     const authStore = inject(AuthStore);
 
     return {
-      user: authStore.user,
+      status: computed(() => store.state.status()),
+      user: authStore.state.user,
+      error: computed(() => store.state.error()),
     };
   }),
   withMethods((store) => {
@@ -73,22 +75,22 @@ export const LoginFlowStore = signalStore(
 
     const setProcessing = () => {
       const newState: ProcessingState = { status: 'processing', error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setEmailSent = () => {
       const newState: EmailSentState = { status: 'email_sent', error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setCompleted = () => {
       const newState: CompletedState = { status: 'completed', error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setError = (error: string) => {
       const newState: ErrorState = { status: 'error', error };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     // ---

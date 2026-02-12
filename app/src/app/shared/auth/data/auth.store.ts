@@ -55,10 +55,12 @@ export type AuthStore = InstanceType<typeof AuthStore>;
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
-  withState<AuthState>(initialState),
+  withState<{ state: AuthState }>({ state: initialState }),
   withComputed((store) => {
     return {
-      isAuthenticated: computed(() => Boolean(store.user())),
+      user: computed(() => store.state.user()),
+      status: computed(() => store.state.status()),
+      isAuthenticated: computed(() => Boolean(store.state.user())),
     };
   }),
   withMethods((store) => {
@@ -69,22 +71,22 @@ export const AuthStore = signalStore(
 
     const setConnecting = () => {
       const newState: ConnectingState = { status: 'connecting', user: null, error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setConnected = (user: User | null) => {
       const newState: ConnectedState = { status: 'connected', user, error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setDisconnected = () => {
       const newState: DisconnectedState = { status: 'disconnected', user: null, error: null };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const setError = (error: string) => {
       const newState: ErrorState = { status: 'error', user: null, error };
-      patchState(store, newState);
+      patchState(store, { state: newState });
     };
 
     const connectedStream$ = () => {

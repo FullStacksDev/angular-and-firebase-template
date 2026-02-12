@@ -1,6 +1,5 @@
 import { signal } from '@angular/core';
 import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
-import { buildRxMethodSpy } from '../../../test/helpers/ngrx';
 import { LoginFlowComponent } from './login-flow.component';
 import { LoginFlowStore } from './login-flow.store';
 
@@ -15,7 +14,7 @@ describe('LoginFlowComponent', () => {
     const handleLoginLinkIfAvailableSpy = MockInstance(
       LoginFlowStore,
       'handleLoginLinkIfAvailable',
-      buildRxMethodSpy('handleLoginLinkIfAvailable'),
+      jasmine.createSpy('handleLoginLinkIfAvailable'),
     );
     MockInstance(LoginFlowStore, 'status', signal('idle' as const));
 

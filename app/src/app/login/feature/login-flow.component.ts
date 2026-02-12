@@ -17,7 +17,7 @@ import { LoginFlowStore } from './login-flow.store';
         Home
       </a>
     </div>
-    <div class="mt-6 w-[360px]">
+    <div class="mt-6 w-90">
       @if (status() === 'error') {
         <div class="my-2 rounded-sm bg-red-100 px-3 py-2 text-center text-sm text-red-700">
           {{ error() }}
@@ -39,7 +39,7 @@ export class LoginFlowComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      if (this.#store.status() === 'email_sent') {
+      if (this.status() === 'email_sent') {
         this.informUserOfEmailSent();
       }
     });
