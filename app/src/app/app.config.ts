@@ -5,6 +5,8 @@ import { provideRouter, withComponentInputBinding, withRouterConfig } from '@ang
 import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
 
+import 'zone.js/plugins/task-tracking';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
